@@ -68,10 +68,10 @@ public class DangKy {
         //find username
         WebElement txt_username= driver.findElement(By.id("firstname"));
         // fill username in text username
-        txt_username.sendKeys("lamcubu2000");
-        driver.findElement(By.id("name")).sendKeys("mend1");
-        driver.findElement(By.id("email")).sendKeys("md11en@gmail.com");
-        driver.findElement(By.id("password")).sendKeys("ki111euoanh123");
+        txt_username.sendKeys("ninhcunho2000");
+        driver.findElement(By.id("name")).sendKeys("me1nd1");
+        driver.findElement(By.id("email")).sendKeys("md111en@gmail.com");
+        driver.findElement(By.id("password")).sendKeys("ki1111euoanh123");
         driver.findElement(By.id("d-b-day")).sendKeys("11");
         driver.findElement(By.id("d-b-month")).sendKeys("11");
         driver.findElement(By.id("d-b-year")).sendKeys("2000");
