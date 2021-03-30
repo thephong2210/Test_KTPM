@@ -21,15 +21,18 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
 /**
  *
  * @author admin
  */
 public class DangKy {
     static WebDriver driver;
+    String filepath="C:\\Users\\theph\\Desktop\\KTPM.xlsx";
     public DangKy() {
     }
+    ReadCellExample rc = new ReadCellExample(); 
+    
+        
 
    
     @BeforeClass
@@ -68,12 +71,12 @@ public class DangKy {
         //find username
         WebElement txt_username= driver.findElement(By.id("firstname"));
         // fill username in text username
-        txt_username.sendKeys("ninhcunho2000");
-        driver.findElement(By.id("name")).sendKeys("me1nd1");
-        driver.findElement(By.id("email")).sendKeys("md111en@gmail.com");
-        driver.findElement(By.id("password")).sendKeys("ki1111euoanh123");
-        driver.findElement(By.id("d-b-day")).sendKeys("11");
-        driver.findElement(By.id("d-b-month")).sendKeys("11");
+        txt_username.sendKeys(rc.ReadCellData(2, 4, filepath));
+        driver.findElement(By.id("name")).sendKeys("sbdjbsdjbf");
+        driver.findElement(By.id("email")).sendKeys("mdsd111en@gmail.com");
+        driver.findElement(By.id("password")).sendKeys("kid1111euoanh123");
+        driver.findElement(By.id("d-b-day")).sendKeys("1");
+        driver.findElement(By.id("d-b-month")).sendKeys("1");
         driver.findElement(By.id("d-b-year")).sendKeys("2000");
         driver.findElement(By.id("SubmitCreate")).click();
 //        WebElement lblerror= driver.findElement(By.className("alert-error"));
