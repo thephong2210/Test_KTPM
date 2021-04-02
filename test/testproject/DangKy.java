@@ -49,28 +49,13 @@ public class DangKy {
         driver.manage().window().fullscreen();
     }
 
-    // Xây dựng các testcae để check test 
-    /*
-      B1. Xác định control nhập dữ liệu
-      B2. Nhập dữ liệu vào username không tồn tại
-      B3. Click vào login
-      B4. Chờ thông báo.
-      B5. Kiểm tra message.
-     */
    
     @Test
-    // kiểm tra đăng nhập thất bại.
-    /*
-      B1. Xác định control nhập dữ liệu
-      B2. Nhập dữ liệu vào username không tồn tại
-      B3. Click vào login
-      B4. Chờ thông báo.
-      B5. Kiểm tra message.
-     */
-    public void check_singupForm_fail() throws InterruptedException {
-        //find username
-        WebElement txt_username = driver.findElement(By.id("hoTen_input"));
-        // fill username in text username
+
+    public void check_singupForm_fail() throws InterruptedException, Exception {
+// Nhập thấp hơn kí tự tối thiểu         
+
+//        WebElement txt_username = driver.findElement(By.id("hoTen_input"));
         driver.findElement(By.id("hoTen_input")).sendKeys(rc.ReadCellData(2, 2, filepath));
         driver.findElement(By.id("email_input")).sendKeys(rc.ReadCellData(2, 3, filepath));
         driver.findElement(By.name("ngaySinh_input")).sendKeys(rc.ReadCellData(2, 4, filepath));
@@ -78,60 +63,91 @@ public class DangKy {
         driver.findElement(By.id("matKhau_input")).sendKeys(rc.ReadCellData(2, 1, filepath));
         driver.findElement(By.id("nhapLaiMatKhau_input")).sendKeys(rc.ReadCellData(2, 1, filepath));
         driver.findElement(By.id("SubmitCreate")).click();
-//        Thread.sleep(6000);
+
         WebElement lblerror = driver.findElement(By.xpath("//*[@id=\"hoTen_input-error\"]"));
         Assert.assertEquals(lblerror.getText(), "Họ Tên Tối Thiểu 6 Kí Tự");
-        if(lblerror.getText().equals("Họ Tên Tối Thiểu 6 Kí Tự"))
-        System.err.println("Họ Tên Tối Thiểu 6 Kí Tự");
+
         lblerror = driver.findElement(By.xpath("//*[@id=\"email_input-error\"]"));
         Assert.assertEquals(lblerror.getText(), "Vui Lòng Nhập Đúng Định Dạng Email");
-        if(lblerror.getText().equals("Vui Lòng Nhập Đúng Định Dạng Email"))
-        System.err.println("Vui Lòng Nhập Đúng Định Dạng Email");
+
         lblerror = driver.findElement(By.xpath("//*[@id=\"firstname-error\"]"));
         Assert.assertEquals(lblerror.getText(), "Tên Tài Khoản Tối Thiểu 6 Kí Tự");
-        if(lblerror.getText().equals("Tên Tài Khoản Tối Thiểu 6 Kí Tự"))
-        System.err.println("Tên Tài Khoản Tối Thiểu 6 Kí Tự");
+
         lblerror = driver.findElement(By.xpath("//*[@id=\"matKhau_input-error\"]"));
         Assert.assertEquals(lblerror.getText(), "Mật Khẩu Tối Thiểu 6 Kí Tự");
-        if(lblerror.getText().equals("Mật Khẩu Tối Thiểu 6 Kí Tự"))
-        System.err.println("Mật Khẩu Tối Thiểu 6 Kí Tự");
-        lblerror =driver.findElement(By.xpath("//*[@id=\"nhapLaiMatKhau_input-error\"]"));
-        Assert.assertEquals(lblerror.getText(), "Mật Khẩu Tối Thiểu 6 Kí Tự");
-        if(lblerror.getText().equals("Mật Khẩu Tối Thiểu 6 Kí Tự"))
-        System.err.println("Mật Khẩu Tối Thiểu 6 Kí Tự");
-        
-//        System.out.println(lblerror.getText()+"Nhập sai thông tin");
-        // hoặc viết cách khác
-        //driver.findElements(By.xpath("//input[@value='Sign in' and @type='submit']"));
-        //WebElement btnsubmit = driver.findElement(By.xpath("//input[@type='submit' and @value='Sign in']"));
-        //System.out.println("duong dan:"+btnsubmit);
 
-        // chờ thông báo khi submit
-//        driver.close();
+        lblerror = driver.findElement(By.xpath("//*[@id=\"nhapLaiMatKhau_input-error\"]"));
+        Assert.assertEquals(lblerror.getText(), "Mật Khẩu Tối Thiểu 6 Kí Tự");
+
+        setUpMethod();
+
+// để trống không nhập gì cả 
+        driver.findElement(By.id("SubmitCreate")).click();
+        Thread.sleep(2000);
+        lblerror = driver.findElement(By.xpath("//*[@id=\"hoTen_input-error\"]"));
+        Assert.assertEquals(lblerror.getText(), "Vui Lòng Nhập Họ Tên");
+
+        lblerror = driver.findElement(By.xpath("//*[@id=\"email_input-error\"]"));
+        Assert.assertEquals(lblerror.getText(), "Vui Lòng Nhập Email");
+
+        lblerror = driver.findElement(By.xpath("//*[@id=\"ngaySinh_input-error\"]"));
+        Assert.assertEquals(lblerror.getText(), "Vui Lòng Chọn Ngày Sinh");
+
+        lblerror = driver.findElement(By.xpath("//*[@id=\"firstname-error\"]"));
+        Assert.assertEquals(lblerror.getText(), "Vui Lòng Nhập Tên Tài Khoản");
+
+        lblerror = driver.findElement(By.xpath("//*[@id=\"matKhau_input-error\"]"));
+        Assert.assertEquals(lblerror.getText(), "Vui Lòng Nhập Mật Khẩu");
+
+        lblerror = driver.findElement(By.xpath("//*[@id=\"nhapLaiMatKhau_input-error\"]"));
+        Assert.assertEquals(lblerror.getText(), "Vui Lòng Nhập Lại Mật Khẩu");
+         setUpMethod();
+        
+//        Nhập quá kí tự cho phép 
+        driver.findElement(By.id("hoTen_input")).sendKeys(rc.ReadCellData(5, 2, filepath));
+        driver.findElement(By.id("email_input")).sendKeys(rc.ReadCellData(5, 3, filepath));
+        driver.findElement(By.name("ngaySinh_input")).sendKeys(rc.ReadCellData(5, 4, filepath));
+        driver.findElement(By.id("firstname")).sendKeys(rc.ReadCellData(5, 0, filepath));
+        driver.findElement(By.id("matKhau_input")).sendKeys(rc.ReadCellData(5, 1, filepath));
+        driver.findElement(By.id("nhapLaiMatKhau_input")).sendKeys(rc.ReadCellData(5, 1, filepath));
+        driver.findElement(By.id("SubmitCreate")).click();
+        lblerror = driver.findElement(By.xpath("//*[@id=\"hoTen_input-error\"]"));
+        Assert.assertEquals(lblerror.getText(), "Họ Tên Tối Đa 20 Kí Tự");
+
+        lblerror = driver.findElement(By.xpath("//*[@id=\"email_input-error\"]"));
+        Assert.assertEquals(lblerror.getText(), "Email Tối Đa 50 Kí Tự");
+
+        lblerror = driver.findElement(By.xpath("//*[@id=\"firstname-error\"]"));
+        Assert.assertEquals(lblerror.getText(), "Tên Tài Khoản Tối Đa 20 Kí Tự");
+
+        lblerror = driver.findElement(By.xpath("//*[@id=\"matKhau_input-error\"]"));
+        Assert.assertEquals(lblerror.getText(), "Mật Khẩu Tối Đa 15 Kí Tự");
+
+        lblerror = driver.findElement(By.xpath("//*[@id=\"nhapLaiMatKhau_input-error\"]"));
+        Assert.assertEquals(lblerror.getText(), "Mật Khẩu Tối Đa 15 Kí Tự");
+        
+        setUpMethod();
+
         
     }
-//    @BeforeMethod
-//    //Chạy trước mỗi method test
-//    // cài đặt reset để tránh làm nhiễu các testcase
-//    public void setUpMethod() throws Exception {
-//       driver.navigate().refresh();
-//        
-//    }
-//     @Test
-//    // kiểm tra đăng nhập thành công.
-//     public void check_singupForm_success() throws InterruptedException {
-//        //find username
-//       WebElement txt_username = driver.findElement(By.id("hoTen_input"));
-//        // fill username in text username
-//        txt_username.sendKeys(rc.ReadCellData(1, 2, filepath));
-//        driver.findElement(By.id("email_input")).sendKeys(rc.ReadCellData(1, 3, filepath));
-//        driver.findElement(By.name("ngaySinh_input")).sendKeys(rc.ReadCellData(1, 4, filepath));
-//        driver.findElement(By.id("firstname")).sendKeys(rc.ReadCellData(1, 0, filepath));
-//        driver.findElement(By.id("matKhau_input")).sendKeys(rc.ReadCellData(1, 1, filepath));
-//        driver.findElement(By.id("nhapLaiMatKhau_input")).sendKeys(rc.ReadCellData(1, 1, filepath));
-//        driver.findElement(By.id("SubmitCreate")).click();
-//       
-//     }
+
+
+    @Test
+    // kiểm tra đăng nhập thành công.
+   public void check_singupForm_success() throws InterruptedException, Exception {
+        
+        driver.findElement(By.id("hoTen_input")).sendKeys(rc.ReadCellData(1, 2, filepath));
+        driver.findElement(By.id("email_input")).sendKeys(rc.ReadCellData(1, 3, filepath));
+        driver.findElement(By.name("ngaySinh_input")).sendKeys(rc.ReadCellData(1, 4, filepath));
+        driver.findElement(By.id("firstname")).sendKeys(rc.ReadCellData(1, 0, filepath));
+        driver.findElement(By.id("matKhau_input")).sendKeys(rc.ReadCellData(1, 1, filepath));
+        driver.findElement(By.id("nhapLaiMatKhau_input")).sendKeys(rc.ReadCellData(1, 1, filepath));
+        driver.findElement(By.id("SubmitCreate")).click();
+        
+//        Thread.sleep(5000);
+//        tearDownMethod();
+
+    }
 //     @Test
 //     public void checkcolor()
 //     {
@@ -141,7 +157,6 @@ public class DangKy {
 //        System.out.println("Button color: " + buttonColor);
 //        System.out.println("Text color " + buttonTextColor);
 //     }
-    
 //    @Test
 //    // kiểm tra đăng nhập thành công.
 //    public void test2()
@@ -174,6 +189,15 @@ public class DangKy {
 //        Assert.assertEquals(height_user, txt_user.getSize().height);
 //      
 //    }
+//    @BeforeMethod
+////    //Chạy trước mỗi method test
+////    // cài đặt reset để tránh làm nhiễu các testcase
+    public void setUpMethod() throws Exception {
+        Thread.sleep(2000);
+        driver.navigate().refresh();
+        driver.manage().window().fullscreen();
+
+    }
 
     @AfterClass
     //Chạy trước tất cả method test trong class hiện tại
@@ -181,12 +205,12 @@ public class DangKy {
 
     }
 
-    @AfterMethod
+//    @AfterMethod
     //Chạy sau mỗi method test
     // sử dụng cài đặt xử lỹ lỗi
     public void tearDownMethod() throws Exception {
         //giải phóng vùng nhớ sau khi xong. thường các kết nối đến database vì đối tượng đã được java giải phóng
-        //driver.quit();
+        driver.quit();
         System.out.println("End");
 
     }
