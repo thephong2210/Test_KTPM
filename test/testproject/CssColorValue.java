@@ -14,7 +14,7 @@ public class CssColorValue {
     public static void main(String[] args) {
         System.setProperty("webdriver.chrome.driver", "test\\lib\\chromedriver.exe");
         WebDriver driver = new ChromeDriver();
-        String url = "http://zero.webappsecurity.com/login.html";
+        String url = "http://localhost/web2general/checkout-registration.php";
         driver.get(url);
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);

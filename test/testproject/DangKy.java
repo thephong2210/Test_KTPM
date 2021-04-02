@@ -11,8 +11,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-//import org.testng.Assert;
-import org.junit.Assert;
+import org.testng.Assert;
+//import org.junit.Assert;
 import org.openqa.selenium.Dimension;
 import static org.testng.Assert.*;
 import org.testng.annotations.AfterClass;
@@ -57,8 +57,9 @@ public class DangKy {
       B4. Chờ thông báo.
       B5. Kiểm tra message.
      */
+   
     @Test
-    // Xây dựng các testcae để check test 
+    // kiểm tra đăng nhập thất bại.
     /*
       B1. Xác định control nhập dữ liệu
       B2. Nhập dữ liệu vào username không tồn tại
@@ -66,28 +67,71 @@ public class DangKy {
       B4. Chờ thông báo.
       B5. Kiểm tra message.
      */
-    public void check_singupForm() throws InterruptedException {
+    public void check_singupForm_fail() throws InterruptedException {
         //find username
         WebElement txt_username = driver.findElement(By.id("hoTen_input"));
         // fill username in text username
-        txt_username.sendKeys(rc.ReadCellData(1, 0, filepath));
-//        driver.findElement(By.id("name")).sendKeys(rc.ReadCellData(2, 4, filepath));
-//        driver.findElement(By.id("email")).sendKeys(rc.ReadCellData(2, 4, filepath));
-//        driver.findElement(By.id("password")).sendKeys(rc.ReadCellData(2, 4, filepath));
-//        driver.findElement(By.id("d-b-day")).sendKeys("1");
-        driver.findElement(By.id("d-b-month")).sendKeys("1");
-        driver.findElement(By.id("d-b-year")).sendKeys("2000");
-//        driver.findElement(By.id("SubmitCreate")).click();
-//        WebElement lblerror= driver.findElement(By.className("alert-error"));
-//       assertEquals(lblerror.getText(),"Login and/or password are wrong.");
+        driver.findElement(By.id("hoTen_input")).sendKeys(rc.ReadCellData(2, 2, filepath));
+        driver.findElement(By.id("email_input")).sendKeys(rc.ReadCellData(2, 3, filepath));
+        driver.findElement(By.name("ngaySinh_input")).sendKeys(rc.ReadCellData(2, 4, filepath));
+        driver.findElement(By.id("firstname")).sendKeys(rc.ReadCellData(2, 0, filepath));
+        driver.findElement(By.id("matKhau_input")).sendKeys(rc.ReadCellData(2, 1, filepath));
+        driver.findElement(By.id("nhapLaiMatKhau_input")).sendKeys(rc.ReadCellData(2, 1, filepath));
+        driver.findElement(By.id("SubmitCreate")).click();
+//        Thread.sleep(6000);
+        WebElement lblerror = driver.findElement(By.xpath("//*[@id=\"hoTen_input-error\"]"));
+        Assert.assertEquals(lblerror.getText(), "Họ Tên Tối Thiểu 6 Kí Tự");
+        if(lblerror.getText().equals("Họ Tên Tối Thiểu 6 Kí Tự"))
+        System.err.println("Họ Tên Tối Thiểu 6 Kí Tự");
+        lblerror = driver.findElement(By.xpath("//*[@id=\"email_input-error\"]"));
+        Assert.assertEquals(lblerror.getText(), "Vui Lòng Nhập Đúng Định Dạng Email");
+        if(lblerror.getText().equals("Vui Lòng Nhập Đúng Định Dạng Email"))
+        System.err.println("Vui Lòng Nhập Đúng Định Dạng Email");
+        lblerror = driver.findElement(By.xpath("//*[@id=\"firstname-error\"]"));
+        Assert.assertEquals(lblerror.getText(), "Tên Tài Khoản Tối Thiểu 6 Kí Tự");
+        if(lblerror.getText().equals("Tên Tài Khoản Tối Thiểu 6 Kí Tự"))
+        System.err.println("Tên Tài Khoản Tối Thiểu 6 Kí Tự");
+        lblerror = driver.findElement(By.xpath("//*[@id=\"matKhau_input-error\"]"));
+        Assert.assertEquals(lblerror.getText(), "Mật Khẩu Tối Thiểu 6 Kí Tự");
+        if(lblerror.getText().equals("Mật Khẩu Tối Thiểu 6 Kí Tự"))
+        System.err.println("Mật Khẩu Tối Thiểu 6 Kí Tự");
+        lblerror =driver.findElement(By.xpath("//*[@id=\"nhapLaiMatKhau_input-error\"]"));
+        Assert.assertEquals(lblerror.getText(), "Mật Khẩu Tối Thiểu 6 Kí Tự");
+        if(lblerror.getText().equals("Mật Khẩu Tối Thiểu 6 Kí Tự"))
+        System.err.println("Mật Khẩu Tối Thiểu 6 Kí Tự");
+        
+//        System.out.println(lblerror.getText()+"Nhập sai thông tin");
         // hoặc viết cách khác
         //driver.findElements(By.xpath("//input[@value='Sign in' and @type='submit']"));
         //WebElement btnsubmit = driver.findElement(By.xpath("//input[@type='submit' and @value='Sign in']"));
         //System.out.println("duong dan:"+btnsubmit);
 
         // chờ thông báo khi submit
-        //Thread.sleep(1000);
+//        driver.close();
+        
     }
+//    @BeforeMethod
+//    //Chạy trước mỗi method test
+//    // cài đặt reset để tránh làm nhiễu các testcase
+//    public void setUpMethod() throws Exception {
+//       driver.navigate().refresh();
+//        
+//    }
+//     @Test
+//    // kiểm tra đăng nhập thành công.
+//     public void check_singupForm_success() throws InterruptedException {
+//        //find username
+//       WebElement txt_username = driver.findElement(By.id("hoTen_input"));
+//        // fill username in text username
+//        txt_username.sendKeys(rc.ReadCellData(1, 2, filepath));
+//        driver.findElement(By.id("email_input")).sendKeys(rc.ReadCellData(1, 3, filepath));
+//        driver.findElement(By.name("ngaySinh_input")).sendKeys(rc.ReadCellData(1, 4, filepath));
+//        driver.findElement(By.id("firstname")).sendKeys(rc.ReadCellData(1, 0, filepath));
+//        driver.findElement(By.id("matKhau_input")).sendKeys(rc.ReadCellData(1, 1, filepath));
+//        driver.findElement(By.id("nhapLaiMatKhau_input")).sendKeys(rc.ReadCellData(1, 1, filepath));
+//        driver.findElement(By.id("SubmitCreate")).click();
+//       
+//     }
 //     @Test
 //     public void checkcolor()
 //     {
@@ -97,13 +141,7 @@ public class DangKy {
 //        System.out.println("Button color: " + buttonColor);
 //        System.out.println("Text color " + buttonTextColor);
 //     }
-//    @BeforeMethod
-//    //Chạy trước mỗi method test
-//    // cài đặt reset để tránh làm nhiễu các testcase
-//    public void setUpMethod() throws Exception {
-//       driver.navigate().refresh();
-//        
-//    }
+    
 //    @Test
 //    // kiểm tra đăng nhập thành công.
 //    public void test2()
