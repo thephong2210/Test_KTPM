@@ -47,7 +47,7 @@ public class TestRunner {
     // @Test
     // public void hello() {}
     public static void main(String[] args) {
-        Result result=JUnitCore.runClasses(TestJunit.class,TestJunit1.class,TestNG.class);
+        Result result=JUnitCore.runClasses(web_giay.class,CssColorValue.class,TestNG.class);
         for (Failure fail: result.getFailures())
         {
             System.out.println(fail.toString());
