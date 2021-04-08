@@ -157,38 +157,6 @@ public class DangKy {
 //        System.out.println("Button color: " + buttonColor);
 //        System.out.println("Text color " + buttonTextColor);
 //     }
-//    @Test
-//    // kiểm tra đăng nhập thành công.
-//    public void test2()
-//    {
-//        WebElement txt_username= driver.findElement(By.id("user_login"));
-//        // fill username in text username
-//        txt_username.sendKeys("username");
-//        driver.findElement(By.name("user_password")).sendKeys("password");
-//        driver.findElement(By.name("submit")).click();
-//        driver.findElement(By.id("details-button")).click();
-//        driver.findElement(By.id("proceed-link")).click();
-//        
-//        String expected_title="Zero Bank";
-//        WebElement actual_title=driver.findElement(By.className("brand"));
-//        Assert.assertEquals(expected_title,actual_title.getText());
-//        //driver.findElement(By.linkText("Account Activity")).click();
-//    }
-//    @Test
-//    // Kiểm tra độ rộng của cotrol
-//    public void test3()
-//    {   
-//        driver.findElement(By.className("icon-user")).click();
-//        driver.findElement(By.id("logout_link")).click();
-//        driver.findElement(By.id("signin_button")).click();
-//        WebElement txt_user= driver.findElement(By.id("user_login"));
-//        int width_user =220;
-//        int height_user=30;
-//        System.out.println("Size sang:"+txt_user.getSize().width);
-//        Assert.assertEquals(width_user, txt_user.getSize().width);
-//        Assert.assertEquals(height_user, txt_user.getSize().height);
-//      
-//    }
 //    @BeforeMethod
 ////    //Chạy trước mỗi method test
 ////    // cài đặt reset để tránh làm nhiễu các testcase
