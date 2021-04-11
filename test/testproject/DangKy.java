@@ -144,6 +144,7 @@ public class DangKy {
         driver.findElement(By.id("nhapLaiMatKhau_input")).sendKeys(rc.ReadCellData(1, 1, filepath));
         driver.findElement(By.id("SubmitCreate")).click();
         
+        
 //        Thread.sleep(5000);
 //        tearDownMethod();
 
