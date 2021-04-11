@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package testproject;
+package ADMIN;
 
 /**
  *
@@ -25,11 +25,11 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import testproject.ReadCellExample;
 import static testproject.DangKy.driver;
 
 public class DangNhapAdmin {
 
-    
     String filepath = "exel\\TestcaseSignUp.xlsx";
 
     public DangNhapAdmin() {
@@ -78,12 +78,10 @@ public class DangNhapAdmin {
     public static void check_LoginForm_success() throws InterruptedException, Exception {
         driver.findElement(By.xpath("/html/body/div/div/div/div/div[2]/form/fieldset/div[1]/input")).sendKeys("admin");
         driver.findElement(By.xpath("/html/body/div/div/div/div/div[2]/form/fieldset/div[2]/input")).sendKeys("admin");
-        
+
         driver.findElement(By.xpath("/html/body/div/div/div/div/div[2]/form/fieldset/input")).click();
 
         Thread.sleep(1000);
-     
-       
 
     }
 
@@ -92,8 +90,9 @@ public class DangNhapAdmin {
         driver.navigate().refresh();
         driver.manage().window().fullscreen();
     }
+
     // Nhâp url các trang trong admin để được 1 vé đi mũi né nha =)))
-     public static void ClickURL(String url) throws InterruptedException, Exception {
+    public static void ClickURL(String url) throws InterruptedException, Exception {
         setUpClass();
         check_LoginForm_success();
         driver.navigate().to(url);

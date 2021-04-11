@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package testproject;
+package ADMIN;
 
 /**
  *
@@ -26,14 +26,14 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import static testproject.DangKy.driver;
-import static testproject.DangNhapAdmin.*;
+import static ADMIN.DangNhapAdmin.*;
 
-public class QLND_QTV {
+public class TKDT_SP {
 
     @Test
     public static void check() throws InterruptedException, Exception {
 
-        ClickURL("http://localhost/web2general/admin/pages/userlist.php");
+        ClickURL("http://localhost/web2general/admin/pages/statistical_product.php");
 
     }
 

@@ -27,7 +27,7 @@ import org.testng.annotations.Test;
  */
 public class DangKy {
 
-    static WebDriver driver;
+    public static WebDriver driver;
     String filepath = "exel\\TestcaseSignUp.xlsx";
 
     public DangKy() {
