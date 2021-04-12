@@ -29,7 +29,7 @@ public class DangKy {
 
     public static WebDriver driver;
     String filepath = "exel\\TestcaseSignUp.xlsx";
-
+    
     public DangKy() {
     }
     ReadCellExample rc = new ReadCellExample();
@@ -161,7 +161,7 @@ public class DangKy {
 //    @BeforeMethod
 ////    //Chạy trước mỗi method test
 ////    // cài đặt reset để tránh làm nhiễu các testcase
-    public void setUpMethod() throws Exception {
+    public static void setUpMethod() throws Exception {
         Thread.sleep(2000);
         driver.navigate().refresh();
         driver.manage().window().fullscreen();

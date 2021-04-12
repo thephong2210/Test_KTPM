@@ -85,7 +85,7 @@ public class DangNhapAdmin {
 
     }
 
-    public void setUpMethod() throws Exception {
+    public static void setUpMethod() throws Exception {
         Thread.sleep(2000);
         driver.navigate().refresh();
         driver.manage().window().fullscreen();
