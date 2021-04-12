@@ -3,8 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Study/HK2_Nam3/KiemThuPhanMem/Test_KTPM/test/testproject/DangKy.java</file>
-            <file>file:/D:/Study/HK2_Nam3/KiemThuPhanMem/Test_KTPM/test/testproject/CssColorValue.java</file>
+            <file>jar:file:/D:/NetBeansProjects/KTPM/test/lib/client-combined-3.141.59-sources.jar!/org/openqa/selenium/chrome/ChromeDriver.java</file>
+            <file>file:/D:/NetBeansProjects/KTPM/test/testproject/CssColorValue.java</file>
+            <file>file:/D:/NetBeansProjects/KTPM/test/testproject/DangNhap.java</file>
+            <file>file:/D:/NetBeansProjects/KTPM/test/testproject/TestRunner.java</file>
+            <file>file:/D:/NetBeansProjects/KTPM/test/testproject/DangKy.java</file>
         </group>
     </open-files>
 </project-private>

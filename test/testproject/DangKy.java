@@ -12,7 +12,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
-import org.openqa.selenium.support.Color;
 //import org.junit.Assert;
 import org.openqa.selenium.Dimension;
 import static org.testng.Assert.*;
@@ -28,8 +27,7 @@ import org.testng.annotations.Test;
  */
 public class DangKy {
 
-    static WebDriver driver;
-
+    public static WebDriver driver;
     String filepath = "exel\\TestcaseSignUp.xlsx";
 
     public DangKy() {
@@ -48,16 +46,16 @@ public class DangKy {
         driver.get("http://localhost/web2general/checkout-registration.php");
         //driver.manage().window().maximize();
         //driver.manage().window().setSize(new Dimension(800, 600));
-        driver.manage().window().maximize();
+        driver.manage().window().fullscreen();
     }
 
    
     @Test
 
     public void check_singupForm_fail() throws InterruptedException, Exception {
-//// Nhập thấp hơn kí tự tối thiểu         
-//
-////        WebElement txt_username = driver.findElement(By.id("hoTen_input"));
+// Nhập thấp hơn kí tự tối thiểu         
+
+//        WebElement txt_username = driver.findElement(By.id("hoTen_input"));
         driver.findElement(By.id("hoTen_input")).sendKeys(rc.ReadCellData(2, 2, filepath));
         driver.findElement(By.id("email_input")).sendKeys(rc.ReadCellData(2, 3, filepath));
         driver.findElement(By.name("ngaySinh_input")).sendKeys(rc.ReadCellData(2, 4, filepath));
@@ -145,65 +143,21 @@ public class DangKy {
         driver.findElement(By.id("matKhau_input")).sendKeys(rc.ReadCellData(1, 1, filepath));
         driver.findElement(By.id("nhapLaiMatKhau_input")).sendKeys(rc.ReadCellData(1, 1, filepath));
         driver.findElement(By.id("SubmitCreate")).click();
-         Thread.sleep(1000);
-         WebElement userNameSuccess =   driver.findElement(By.id("userNameAccount"));
-         
-         System.out.println(userNameSuccess.getText());
-         
-         Assert.assertEquals(userNameSuccess.getText(), rc.ReadCellData(1, 0, filepath));
-         
-////        Thread.sleep(5000);
-////        tearDownMethod();
-//
+        
+        
+//        Thread.sleep(5000);
+//        tearDownMethod();
+
     }
-//   
-    //Test UI
-   // - check tiêu đề
-   // - check nút đăng kí
-   //
-     @Test
-     public void check_UI()
-     {
-        //màu background nút đăng ký
-        String buttonColor = driver.findElement(By.xpath("//*[@id=\"SubmitCreate\"]")).getCssValue("background-color");
-        String hexButtonColor = Color.fromString(buttonColor).asHex();
-        Assert.assertEquals(hexButtonColor,"#ff0000");
-        
-        //màu chữ nút đăng ký
-        String buttonTextColor = driver.findElement(By.xpath("//*[@id=\"SubmitCreate\"]")).getCssValue("color");
-        String hexButtonTextColor = Color.fromString(buttonTextColor).asHex();
-        
-        Assert.assertEquals(hexButtonTextColor,"#ffffff");
-        
-        //text nút đăng ký
-        String buttonText = driver.findElement(By.xpath("//*[@id=\"SubmitCreate\"]")).getText();
-        Assert.assertEquals(buttonText,"ĐĂNG KÍ");
-        
-        //text label "TẠO TÀI KHOẢN"
-        String textTaoTaiKhoan = driver.findElement(By.xpath("/html/body/section[2]/div/div[2]/div[1]/h2")).getText();
-        Assert.assertEquals(textTaoTaiKhoan,"TẠO MỘT TÀI KHOẢN");
-        
-        //check Title
-        String titlePage = driver.getTitle();
-        Assert.assertEquals(titlePage,"ĐĂNG KÝ | GIÀY B.STORE - Hệ thống giày thể thao chính hãng");
-        
-     }
-     
-//    @Test 
-//    // Kiểm tra độ rộng của cotrol
-//    public void test3()
-//    {   
-//        driver.findElement(By.className("icon-user")).click();
-//        driver.findElement(By.id("logout_link")).click();
-//        driver.findElement(By.id("signin_button")).click();
-//        WebElement txt_user= driver.findElement(By.id("user_login"));
-//        int width_user =220;
-//        int height_user=30;
-//        System.out.println("Size sang:"+txt_user.getSize().width);
-//        Assert.assertEquals(width_user, txt_user.getSize().width);
-//        Assert.assertEquals(height_user, txt_user.getSize().height);
-//      
-//    }
+//     @Test
+//     public void checkcolor()
+//     {
+//        
+//        String buttonColor = driver.findElement(By.name("submit")).getCssValue("background-color");
+//        String buttonTextColor = driver.findElement(By.name("submit")).getCssValue("color");
+//        System.out.println("Button color: " + buttonColor);
+//        System.out.println("Text color " + buttonTextColor);
+//     }
 //    @BeforeMethod
 ////    //Chạy trước mỗi method test
 ////    // cài đặt reset để tránh làm nhiễu các testcase
