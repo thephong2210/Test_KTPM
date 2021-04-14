@@ -33,7 +33,7 @@ public class QLSP_DanhSachSP {
     @Test
     public static void check() throws InterruptedException, Exception {
 
-        ClickURL("http://localhost/web2general/admin/pages/product.php");
+        LoginAdminAndToPage("http://localhost/web2general/admin/pages/product.php");
 
     }
 

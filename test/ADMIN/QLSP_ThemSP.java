@@ -33,7 +33,7 @@ public class QLSP_ThemSP {
     @Test
     public static void check() throws InterruptedException, Exception {
 
-        ClickURL("http://localhost/web2general/admin/pages/productadd.php");
+        LoginAdminAndToPage("http://localhost/web2general/admin/pages/productadd.php");
 
     }
 

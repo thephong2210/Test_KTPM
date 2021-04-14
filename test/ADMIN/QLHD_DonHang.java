@@ -33,7 +33,7 @@ public class QLHD_DonHang {
     @Test
     public static void check() throws InterruptedException, Exception {
 
-        ClickURL("http://localhost/web2general/admin/pages/orders.php");
+        LoginAdminAndToPage("http://localhost/web2general/admin/pages/orders.php");
 
     }
 
