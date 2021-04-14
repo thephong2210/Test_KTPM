@@ -74,14 +74,14 @@ public class DangNhapAdmin {
 
     }
 
-//    @Test
+    @Test
     public static void check_LoginForm_success() throws InterruptedException, Exception {
         driver.findElement(By.xpath("/html/body/div/div/div/div/div[2]/form/fieldset/div[1]/input")).sendKeys("admin");
         driver.findElement(By.xpath("/html/body/div/div/div/div/div[2]/form/fieldset/div[2]/input")).sendKeys("admin");
 
         driver.findElement(By.xpath("/html/body/div/div/div/div/div[2]/form/fieldset/input")).click();
 
-        Thread.sleep(1000);
+        
 
     }
 
