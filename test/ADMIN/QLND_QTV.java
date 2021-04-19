@@ -298,7 +298,8 @@ public class QLND_QTV {
 //            accounttypeedit.clear();
             accounttypeedit.sendKeys("manager");
             driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/input")).click();
-            Thread.sleep(500);
+            Thread.sleep(2000);
+            driver.close();
         }
     
         
