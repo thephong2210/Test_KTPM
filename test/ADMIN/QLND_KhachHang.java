@@ -33,7 +33,7 @@ public class QLND_KhachHang {
     @Test
     public static void check() throws InterruptedException, Exception {
 
-        LoginAdminAndToPage("http://localhost/web2general/admin/pages/customerlist.php");
+        ClickURL("http://localhost/web2general/admin/pages/customerlist.php");
 
     }
 

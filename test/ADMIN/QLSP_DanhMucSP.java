@@ -33,51 +33,38 @@ public class QLSP_DanhMucSP {
     public static WebDriver dri;
     String filepath = "exel\\TestcaseSignUp.xlsx";
     public QLSP_DanhMucSP(){
-    }ReadCellExample rc = new ReadCellExample();
-//        public static void setUpClass() throws Exception {
-//        // thiết lặp các đối tượng mặc định;
-//
-//        System.out.println("Start");
-//        System.setProperty("webdriver.chrome.driver", "test\\lib\\chromedriver.exe");
-//        driver = new ChromeDriver();
-//        driver.manage().timeouts().implicitlyWait(20000, TimeUnit.MILLISECONDS);
-//        driver.get("http://localhost/web2general/admin/pages/category.php");
-        //driver.manage().window().maximize();
-        //driver.manage().window().setSize(new Dimension(800, 600));
-      //  driver.manage().window().fullscreen();
-   // }
-       @Test
-    public void check_add() throws InterruptedException, Exception  { LoginAdminAndToPage("http://localhost/web2general/admin/pages/category.php");
-        driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/input[1]")).sendKeys("");Thread.sleep(2000);
+    }
+    ReadCellExample rc = new ReadCellExample();
+    
+    @Test
+    public void check_add() throws InterruptedException, Exception  { 
+        ClickURL("http://localhost/web2general/admin/pages/category.php");
+        driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/input[1]")).sendKeys("");
+        Thread.sleep(2000);
         driver.findElement(By.xpath("//*[@id=\"addbtn\"]")).click();
         
         WebElement lblerror = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/div"));
-        Assert.assertEquals(lblerror.getText(), "Không được để trống!");setUpMethod();
+        Assert.assertEquals(lblerror.getText(), "Không được để trống!");
+        setUpMethod();
         
         driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/input[1]")).sendKeys("USWE");
         driver.findElement(By.xpath("//*[@id=\"addbtn\"]")).click();
-        //*[@id="page-wrapper"]/div/div[2]/div[2]/form/div
-       lblerror = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/div"));
-        Assert.assertEquals(lblerror.getText(), "Thêm danh mục thành công!");driver.navigate().to("http://localhost/web2general/admin/pages/category.php");
-        driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/input[1]")).sendKeys("USWE");
-        driver.findElement(By.xpath("//*[@id=\"addbtn\"]")).click();
-        lblerror = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/div"));
-        Assert.assertEquals(lblerror.getText(), "Tài khoảng bi trùng");System.out.println("Failed:Tài khoảng bi trùng");
-        
-    }//@Test
-    public void check_edit() throws InterruptedException, Exception{ driver.navigate().to("http://localhost/web2general/admin/pages/categoryedit.php?catid=15");
-        driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/input[1]")).clear();       // driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/input[1]")).clear();
 
+       lblerror = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/div"));
+        Assert.assertEquals(lblerror.getText(), "Thêm danh mục thành công!");
+        Thread.sleep(2000);
+
+    }
+    @Test
+    public void check_edit() throws InterruptedException, Exception{ 
+        driver.navigate().to("http://localhost/web2general/admin/pages/categoryedit.php?catid=15");
+        driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/input[1]")).clear();
         driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/input[2]")).click();
         
 //        
         WebElement lblerror = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/div"));
         Assert.assertEquals(lblerror.getText(), "Không được để trống!");
-        setUpMethod();
+        //setUpMethod();
   }
-    //@Test
-  
-
-  
-    
+    //@Test    
 }
