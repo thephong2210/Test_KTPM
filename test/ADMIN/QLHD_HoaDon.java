@@ -31,78 +31,71 @@ import static ADMIN.DangNhapAdmin.*;
 
 public class QLHD_HoaDon {
     @Test
-    public void DonHang() throws InterruptedException, Exception{
-        ClickURL("http://localhost/web2general/admin/pages/hoadonlist.php");
+    public void HoaDon() throws InterruptedException, Exception{
+        LoginAdminAndToPage("http://localhost/web2general/admin/pages/hoadonlist.php");
+        Thread.sleep(3000);
+        
         //tìm kiếm theo mã hóa đơn
-        //khi không nhập ký tự
+        //khi không nhập ký tự --> Hiện tất cả
         driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div/div/div[2]/form[1]/select")).sendKeys("Mã hóa đơn");
         driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div/div/div[2]/form[1]/input[1]")).sendKeys("");
         driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div/div/div[2]/form[1]/input[2]")).click();
-        Thread.sleep(2000);
-        //setUpMethod();
-        
-        //tìm kiếm có trong cơ sở dữ liệu vd"18"
-        driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div/div/div[2]/form[1]/select")).sendKeys("Mã hóa đơn");
-        driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div/div/div[2]/form[1]/input[1]")).sendKeys("18");
-        driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div/div/div[2]/form[1]/input[2]")).click();
-        //driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div/div/div[2]/form[1]/input[1]")).clear();
-        Thread.sleep(2000);
-        
         setUpMethod();
         
-        //tìm kiếm không có trong csdl vd"19" hoặc ký tự đặc biệt hoặc blabla
+        //tìm kiếm Có trong cơ sở dữ liệu vd"18" --> Hiện danh sách Đúng
         driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div/div/div[2]/form[1]/select")).sendKeys("Mã hóa đơn");
-        driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div/div/div[2]/form[1]/input[1]")).sendKeys("19");
+        driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div/div/div[2]/form[1]/input[1]")).sendKeys("18");
+        driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div/div/div[2]/form[1]/input[2]")).click();     
+        setUpMethod();
+        
+        //tìm kiếm Không có trong csdl vd"19999" hoặc ký tự đặc biệt hoặc blabla --> Hiện Aler "Không tìm thấy dữ liệu"
+        driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div/div/div[2]/form[1]/select")).sendKeys("Mã hóa đơn");
+        driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div/div/div[2]/form[1]/input[1]")).sendKeys("19999");
         driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div/div/div[2]/form[1]/input[2]")).click();
         String errrorr = driver.switchTo().alert().getText() ;
         Assert.assertEquals(errrorr,"Không tìm thấy dữ liệu!" );
-        Thread.sleep(2000); 
+        Thread.sleep(3000); 
         driver.switchTo().alert().accept();
-        //setUpMethod();
+        setUpMethod();
         
         //tìm kiếm theo mã khách hàng
-        //khi không nhập ký tự
-        driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div/div/div[2]/form[1]/input[1]")).clear();
+        //khi không nhập ký tự --> Hiện tất cả
         driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div/div/div[2]/form[1]/select")).sendKeys("Mã khách hàng");
         driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div/div/div[2]/form[1]/input[1]")).sendKeys("");
         driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div/div/div[2]/form[1]/input[2]")).click();
-        Thread.sleep(2000);
-       // setUpMethod();
+        setUpMethod();
         
-        //tìm kiếm có trong cơ sở dữ liệu vd"19"
+         //tìm kiếm Có trong cơ sở dữ liệu vd"19" --> Hiện danh sách Đúng
         driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div/div/div[2]/form[1]/select")).sendKeys("Mã khách hàng");
         driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div/div/div[2]/form[1]/input[1]")).sendKeys("19");
         driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div/div/div[2]/form[1]/input[2]")).click();
-        Thread.sleep(2000);
-        //setUpMethod();
+        setUpMethod();
         
-        //tìm kiếm không có trong csdl vd"20" hoặc ký tự đặc biệt hoặc blabla
+        //tìm kiếm Không có trong csdl vd"22222" hoặc ký tự đặc biệt hoặc blabla --> Hiện Aler "Không tìm thấy dữ liệu"
         driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div/div/div[2]/form[1]/select")).sendKeys("Mã khách hàng");
-        driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div/div/div[2]/form[1]/input[1]")).sendKeys("20");
+        driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div/div/div[2]/form[1]/input[1]")).sendKeys("22222");
         driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div/div/div[2]/form[1]/input[2]")).click();
         //String errrorrr = driver.switchTo().alert().getText() ;
         Assert.assertEquals(errrorr,"Không tìm thấy dữ liệu!" );
         Thread.sleep(2000); 
         driver.switchTo().alert().accept();
-        //driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div/div/div[2]/form[1]/input[1]")).clear();
-        //setUpMethod();
+        setUpMethod();
         
         //tìm kiếm theo ngày lập hóa đơn
-        //tìm kiếm những đơn hàng có năm lập hóa đơn là 2021
-        driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div/div/div[2]/form[1]/input[1]")).clear();
-        driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div/div/div[2]/form[1]/select")).sendKeys("Ngày lập hóa đơn");
-        driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div/div/div[2]/form[1]/input[1]")).sendKeys("2021");
-        driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div/div/div[2]/form[1]/input[2]")).click();
-        Thread.sleep(2000);
         
-        //tìm kiếm khi không nhập ký tự
-        driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div/div/div[2]/form[1]/input[1]")).clear();
+        //tìm kiếm khi không nhập ký tự --> Hiện tất cả
         driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div/div/div[2]/form[1]/select")).sendKeys("Ngày lập hóa đơn");
         driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div/div/div[2]/form[1]/input[1]")).sendKeys("");
         driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div/div/div[2]/form[1]/input[2]")).click();
-        Thread.sleep(2000);
+        setUpMethod();
         
-        //tìm kiếm không có trong cơ sở dữ liệu
+        //tìm kiếm những đơn hàng Có năm lập hóa đơn là 2021 --> Hiện danh sách Đúng
+        driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div/div/div[2]/form[1]/select")).sendKeys("Ngày lập hóa đơn");
+        driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div/div/div[2]/form[1]/input[1]")).sendKeys("2021");
+        driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div/div/div[2]/form[1]/input[2]")).click();
+        setUpMethod();
+        
+        //tìm kiếm Không có trong cơ sở dữ liệu --> Hiện Aler "Không tìm thấy dữ liệu"
         driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div/div/div[2]/form[1]/select")).sendKeys("Ngày lập hóa đơn");
         driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div/div/div[2]/form[1]/input[1]")).sendKeys("2022");
         driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div/div/div[2]/form[1]/input[2]")).click();
@@ -111,40 +104,48 @@ public class QLHD_HoaDon {
         driver.switchTo().alert().accept();
         
         //tìm kiếm từ ngày đến ngày
-        // khi không nhập ký tự nào
+        // khi không nhập ký tự nào --> Hiện tất cả
         driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div/div/div[2]/form[2]/input[3]")).click();
         
-        //khi nhập không đúng định dạng hoặc nhập sai ngày ví dụ 30/2/2021
+        //khi nhập Không đúng định dạng hoặc nhập Không có trong csdl ví dụ 30/02/2021 --> Hiện Element "No data available in table"
         driver.findElement(By.xpath("//*[@id=\"datepicker1\"]")).sendKeys("2022");
         driver.findElement(By.xpath("//*[@id=\"datepicker2\"]")).sendKeys("2023");
         driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div/div/div[2]/form[2]/input[3]")).click();
         WebElement lblerror = driver.findElement(By.xpath("//*[@id=\"dataTables-example\"]/tbody/tr/td"));
         Assert.assertEquals(lblerror.getText(), "No data available in table");
-        Thread.sleep(2000);
+        Thread.sleep(3000);
         
-        //khi nhập đúng thời gian có trong cơ sở dữ liệu
+        //khi nhập đúng thời gian có trong cơ sở dữ liệu --> Hiện danh sách Đúng
         driver.findElement(By.xpath("//*[@id=\"datepicker1\"]")).clear();
         driver.findElement(By.xpath("//*[@id=\"datepicker2\"]")).clear();
         driver.findElement(By.xpath("//*[@id=\"datepicker1\"]")).sendKeys("2020-04-16");
         driver.findElement(By.xpath("//*[@id=\"datepicker2\"]")).sendKeys("2020-11-20");
         driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div/div/div[2]/form[2]/input[3]")).click();
-        Thread.sleep(2000);
+        Thread.sleep(3000);
         
         
         //khi click hiện tất cả
         driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div/div/div[2]/form[1]/a/input")).click();
-        Thread.sleep(2000);
+        Thread.sleep(3000);
         
-        //click xem chi tiết
+        //click xem chi tiết --> Hiện web site chi tiết
         driver.findElement(By.xpath("//*[@id=\"btnShow\"]")).click();
         //Thread.sleep(2000);
+        driver.manage().window().fullscreen();
     }
 
     //@Test
     public static void check() throws InterruptedException, Exception {
 
-        ClickURL("http://localhost/web2general/admin/pages/hoadonlist.php");
+        LoginAdminAndToPage("http://localhost/web2general/admin/pages/hoadonlist.php");
 
+    }
+    public void setUpMethod() throws Exception {
+        Thread.sleep(3000);
+        driver.navigate().refresh();
+//        driver.manage().window().fullscreen();
+        //clear input TimKiem
+        driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div/div/div[2]/form[1]/input[1]")).clear();
     }
 
 }

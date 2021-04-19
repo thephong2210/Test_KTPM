@@ -27,146 +27,153 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import static testproject.DangKy.driver;
 import static ADMIN.DangNhapAdmin.*;
-import java.util.HashSet;
 
 public class QLHD_DonHang {
-
-    @Test
-    public static void check_donhang() throws InterruptedException, Exception {
-        ClickURL("http://localhost/web2general/admin/pages/orders.php");
-        //tìm kiếm theo mã đơn hàng
-        //khi không nhập ký tự
+    //@Test
+    public void DonHang() throws InterruptedException, Exception{
+        LoginAdminAndToPage("http://localhost/web2general/admin/pages/orders.php");
+        Thread.sleep(3000);
+        
+        //tìm kiếm theo mã hóa đơn
+        //khi không nhập ký tự --> Hiện tất cả
         driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div/div/div[2]/form[1]/select")).sendKeys("Mã đơn hàng");
         driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div/div/div[2]/form[1]/input[1]")).sendKeys("");
         driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div/div/div[2]/form[1]/input[2]")).click();
-        Thread.sleep(3000);
+        setUpMethod();
         
-        //tìm kiếm khi nhập thông tin nằm trong cơ sở dữ liệu
+        //tìm kiếm Có trong cơ sở dữ liệu vd"18" --> Hiện danh sách Đúng
         driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div/div/div[2]/form[1]/select")).sendKeys("Mã đơn hàng");
-        driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div/div/div[2]/form[1]/input[1]")).sendKeys("19");
-        driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div/div/div[2]/form[1]/input[2]")).click();
-        Thread.sleep(3000);
+        driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div/div/div[2]/form[1]/input[1]")).sendKeys("18");
+        driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div/div/div[2]/form[1]/input[2]")).click();     
+        setUpMethod();
         
-        //tìm kiếm khi nhập thông tin không nằm trong cở sở dữ liệu( hoặc tìm kiếm có nhập ký tự đặc biệt)
-        driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div/div/div[2]/form[1]/input[1]")).clear();
+        //tìm kiếm Không có trong csdl vd"19999" hoặc ký tự đặc biệt hoặc blabla --> Hiện Aler "Không tìm thấy dữ liệu"
         driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div/div/div[2]/form[1]/select")).sendKeys("Mã đơn hàng");
-        driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div/div/div[2]/form[1]/input[1]")).sendKeys("20");
+        driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div/div/div[2]/form[1]/input[1]")).sendKeys("19999");
         driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div/div/div[2]/form[1]/input[2]")).click();
         String errrorr = driver.switchTo().alert().getText() ;
         Assert.assertEquals(errrorr,"Không tìm thấy dữ liệu!" );
-        Thread.sleep(2000); 
+        Thread.sleep(3000); 
         driver.switchTo().alert().accept();
-        Thread.sleep(3000);
-        driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div/div/div[2]/form[1]/input[1]")).clear();
+        setUpMethod();
         
         //tìm kiếm theo mã khách hàng
-        //khi không nhập ký tự
+        //khi không nhập ký tự --> Hiện tất cả
         driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div/div/div[2]/form[1]/select")).sendKeys("Mã khách hàng");
         driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div/div/div[2]/form[1]/input[1]")).sendKeys("");
         driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div/div/div[2]/form[1]/input[2]")).click();
-        Thread.sleep(3000);
+        setUpMethod();
         
-        //tìm kiếm mã khách hàng khi nhập thông tin nằm trong cơ sở dữ liệu
+         //tìm kiếm Có trong cơ sở dữ liệu vd"19" --> Hiện danh sách Đúng
         driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div/div/div[2]/form[1]/select")).sendKeys("Mã khách hàng");
-        driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div/div/div[2]/form[1]/input[1]")).sendKeys("9");
+        driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div/div/div[2]/form[1]/input[1]")).sendKeys("19");
         driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div/div/div[2]/form[1]/input[2]")).click();
-        Thread.sleep(3000);
+        setUpMethod();
         
-        //tìm kiếm khi nhập thông tin không nằm trong cở sở dữ liệu( hoặc tìm kiếm có nhập ký tự đặc biệt)
-        driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div/div/div[2]/form[1]/input[1]")).clear();
+        //tìm kiếm Không có trong csdl vd"22222" hoặc ký tự đặc biệt hoặc blabla --> Hiện Aler "Không tìm thấy dữ liệu"
         driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div/div/div[2]/form[1]/select")).sendKeys("Mã khách hàng");
-        driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div/div/div[2]/form[1]/input[1]")).sendKeys("15");
+        driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div/div/div[2]/form[1]/input[1]")).sendKeys("22222");
         driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div/div/div[2]/form[1]/input[2]")).click();
+        //String errrorrr = driver.switchTo().alert().getText() ;
         Assert.assertEquals(errrorr,"Không tìm thấy dữ liệu!" );
         Thread.sleep(2000); 
         driver.switchTo().alert().accept();
-        Thread.sleep(3000);
-        driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div/div/div[2]/form[1]/input[1]")).clear();
-
-        //tìm kiếm theo trạng thái
-        //khi không nhập ký tự
+        setUpMethod();
+        
+        //tìm kiếm theo Trạng thái
+        //khi không nhập ký tự --> Hiện tất cả
         driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div/div/div[2]/form[1]/select")).sendKeys("Trạng thái");
         driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div/div/div[2]/form[1]/input[1]")).sendKeys("");
         driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div/div/div[2]/form[1]/input[2]")).click();
-        Thread.sleep(3000);
+        setUpMethod();
         
-        //tìm kiếm trạng thái "Chưa giao"
+        //tìm kiếm Khác 2 từ khóa "đã hoàn thành" hoặc "Chưa giao" vd"abc"--> Hiện tất cả
         driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div/div/div[2]/form[1]/select")).sendKeys("Trạng thái");
-        driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div/div/div[2]/form[1]/input[1]")).sendKeys("Chưa giao");
+        driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div/div/div[2]/form[1]/input[1]")).sendKeys("abc");
         driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div/div/div[2]/form[1]/input[2]")).click();
-        Thread.sleep(3000);
+        Assert.assertEquals(errrorr,"Không tìm thấy dữ liệu!" );
+        Thread.sleep(3000); 
+        driver.switchTo().alert().accept();
+        setUpMethod();
         
-        //tìm kiếm trạng thái "Đã hoàn thành"
-        driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div/div/div[2]/form[1]/input[1]")).clear();
+        //tìm kiếm Có trong cơ sở dữ liệu vd"đã hoàn thành" --> Hiện danh sách đơn hàng đã hoàn thành
         driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div/div/div[2]/form[1]/select")).sendKeys("Trạng thái");
         driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div/div/div[2]/form[1]/input[1]")).sendKeys("đã hoàn thành");
         driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div/div/div[2]/form[1]/input[2]")).click();
-        Thread.sleep(3000);
+        setUpMethod();
         
-        //tìm kiếm trạng thái khi nhập dữ liệu không có trong csdl
-        driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div/div/div[2]/form[1]/input[1]")).clear();
+        //tìm kiếm Có trong cơ sở dữ liệu vd"Chưa giao" --> Hiện danh sách đơn hàng chưa giao
         driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div/div/div[2]/form[1]/select")).sendKeys("Trạng thái");
-        driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div/div/div[2]/form[1]/input[1]")).sendKeys("#$%%$%");
+        driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div/div/div[2]/form[1]/input[1]")).sendKeys("Chưa giao");
         driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div/div/div[2]/form[1]/input[2]")).click();
-        Assert.assertEquals(errrorr,"Không tìm thấy dữ liệu!" );
-        Thread.sleep(2000); 
-        driver.switchTo().alert().accept();
-        Thread.sleep(3000);
+        setUpMethod();
         
-        //tìm kiếm theo ngày lập đơn hàng
-        //khi không nhập ký tự nào
-        driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div/div/div[2]/form[1]/input[1]")).clear();
+        //tìm kiếm theo ngày lập hóa đơn
+        //tìm kiếm khi không nhập ký tự --> Hiện tất cả
         driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div/div/div[2]/form[1]/select")).sendKeys("Ngày lập đơn hàng");
         driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div/div/div[2]/form[1]/input[1]")).sendKeys("");
         driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div/div/div[2]/form[1]/input[2]")).click();
-        Thread.sleep(3000);
+        setUpMethod();
         
-        //khi nhập đúng định dạng ngày và nằm trong csdl
+        //tìm kiếm những đơn hàng Có năm lập hóa đơn là 2021-11-26 --> Hiện danh sách Đúng
         driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div/div/div[2]/form[1]/select")).sendKeys("Ngày lập đơn hàng");
-        driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div/div/div[2]/form[1]/input[1]")).sendKeys("2020-11");
+        driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div/div/div[2]/form[1]/input[1]")).sendKeys("2020-11-26");
         driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div/div/div[2]/form[1]/input[2]")).click();
-        Thread.sleep(3000);
+        setUpMethod();
         
-        //tìm kiếm sai định dạng hoặc những thứ không nằm trong cơ sở dữ liệu
-        driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div/div/div[2]/form[1]/input[1]")).clear();
+        //tìm kiếm Không có trong cơ sở dữ liệu --> Hiện Aler "Không tìm thấy dữ liệu"
         driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div/div/div[2]/form[1]/select")).sendKeys("Ngày lập đơn hàng");
-        driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div/div/div[2]/form[1]/input[1]")).sendKeys("2020-11-11-11-11");
+        driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div/div/div[2]/form[1]/input[1]")).sendKeys("2022");
         driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div/div/div[2]/form[1]/input[2]")).click();
         Assert.assertEquals(errrorr,"Không tìm thấy dữ liệu!" );
         Thread.sleep(2000); 
         driver.switchTo().alert().accept();
-        Thread.sleep(3000);
+        setUpMethod();
         
-        //click hiện tất cả
-        driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div/div/div[2]/form[1]/input[1]")).clear();
-        driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div/div/div[2]/form[1]/a/input")).click();
-        
-        //click hiện lọc
-        //khi không nhập vào ngày tháng
-        driver.findElement(By.xpath("//*[@id=\"datepicker1\"]")).sendKeys("");
-        driver.findElement(By.xpath("//*[@id=\"datepicker2\"]")).sendKeys("");
+        //tìm kiếm từ ngày đến ngày
+        // khi không nhập ký tự nào --> Hiện tất cả
         driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div/div/div[2]/form[2]/input[3]")).click();
-        Thread.sleep(3000);
         
-        //khi nhập đúng định dạng nằm trong csdl để trả về kết quả đúng
-        driver.findElement(By.xpath("//*[@id=\"datepicker1\"]")).sendKeys("2020-09-16");
-        driver.findElement(By.xpath("//*[@id=\"datepicker2\"]")).sendKeys("2020-12-02");
-        driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div/div/div[2]/form[2]/input[3]")).click();
-        Thread.sleep(3000);
-        
-        //khi nhập sai định trạng sẽ không trả về kết quả
-        driver.findElement(By.xpath("//*[@id=\"datepicker1\"]")).sendKeys("2020-09-16");
-        driver.findElement(By.xpath("//*[@id=\"datepicker2\"]")).sendKeys("2020-12-02");
+        //khi nhập Không đúng định dạng hoặc nhập Không có trong csdl ví dụ 30/02/2021 --> Hiện Element "No data available in table"
+        driver.findElement(By.xpath("//*[@id=\"datepicker1\"]")).sendKeys("2022");
+        driver.findElement(By.xpath("//*[@id=\"datepicker2\"]")).sendKeys("2023");
         driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div/div/div[2]/form[2]/input[3]")).click();
         WebElement lblerror = driver.findElement(By.xpath("//*[@id=\"dataTables-example\"]/tbody/tr/td"));
         Assert.assertEquals(lblerror.getText(), "No data available in table");
-        Thread.sleep(2000);
+        setUpMethod();
+        
+        //khi nhập đúng thời gian có trong cơ sở dữ liệu --> Hiện danh sách Đúng
+        driver.findElement(By.xpath("//*[@id=\"datepicker1\"]")).clear();
+        driver.findElement(By.xpath("//*[@id=\"datepicker2\"]")).clear();
+        driver.findElement(By.xpath("//*[@id=\"datepicker1\"]")).sendKeys("2020-04-16");
+        driver.findElement(By.xpath("//*[@id=\"datepicker2\"]")).sendKeys("2020-11-20");
+        driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div/div/div[2]/form[2]/input[3]")).click();
+        setUpMethod();
         
         
+        //khi click hiện tất cả
+        driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div/div/div[2]/form[1]/a/input")).click();
+        setUpMethod();
+        
+        //click xem chi tiết --> Hiện web site chi tiết
+        driver.findElement(By.xpath("//*[@id=\"btnShow\"]")).click();
+        //Thread.sleep(2000);
+        driver.manage().window().fullscreen();
     }
+
     @Test
-    public static void check_thongtin() throws InterruptedException, Exception {
-        driver.navigate().to("http://localhost/web2general/admin/pages/chitietdonhang.php?maDonHang=12");
-        //ClickURL("http://localhost/web2general/admin/pages/orders.php");
+    public static void click_thanhtoan() throws InterruptedException, Exception {
+
+        LoginAdminAndToPage("http://localhost/web2general/admin/pages/orders.php?statusid=9");
+        driver.findElement(By.xpath("//*[@id=\"dataTables-example\"]/tbody/tr[9]/td[6]/a[2]/button")).click();
+
     }
+    public void setUpMethod() throws Exception {
+        Thread.sleep(3000);
+        driver.navigate().refresh();
+//        driver.manage().window().fullscreen();
+        //clear input TimKiem
+        driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div/div/div[2]/form[1]/input[1]")).clear();
+    }
+
 }

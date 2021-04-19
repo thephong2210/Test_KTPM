@@ -33,8 +33,35 @@ public class TKDT_TheoThang {
     @Test
     public static void check() throws InterruptedException, Exception {
 
-        ClickURL("http://localhost/web2general/admin/pages/statistical_months.php");
-
+        LoginAdminAndToPage("http://localhost/web2general/admin/pages/statistical_months.php");
+        Thread.sleep(3000);
+        
+        //tìm kiếm từ ngày đến ngày
+        // khi không nhập ký tự nào --> Hiện tất cả
+        driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[1]/form/input[3]")).click();
+        Thread.sleep(3000);
+        
+        //khi nhập không đúng định dạng hoặc nhập sai ngày ví dụ 30/2/2021 --> Không hiện gì cả
+        driver.findElement(By.xpath("//*[@id=\"datepicker1\"]")).sendKeys("2022");
+        driver.findElement(By.xpath("//*[@id=\"datepicker2\"]")).sendKeys("2023");
+        driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[1]/form/input[3]")).click();
+        Thread.sleep(3000);
+        
+        //khi nhập đúng thời gian có trong cơ sở dữ liệu --> Hiện danh sách đúng
+        driver.findElement(By.xpath("//*[@id=\"datepicker1\"]")).clear();
+        driver.findElement(By.xpath("//*[@id=\"datepicker2\"]")).clear();
+        driver.findElement(By.xpath("//*[@id=\"datepicker1\"]")).sendKeys("2020-04-16");
+        driver.findElement(By.xpath("//*[@id=\"datepicker2\"]")).sendKeys("2020-11-20");
+        driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[1]/form/input[3]")).click();
+        Thread.sleep(3000);
+        
+        //nhấn Hiện tất cả
+        driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[1]/form/a/input")).click();
+        Thread.sleep(3000);
+        driver.manage().window().fullscreen();
     }
-
+    public void setUpMethod() throws Exception {
+        Thread.sleep(3000);
+        driver.navigate().refresh();
+    }
 }

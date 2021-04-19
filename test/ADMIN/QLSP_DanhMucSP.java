@@ -38,7 +38,7 @@ public class QLSP_DanhMucSP {
     
     @Test
     public void check_add() throws InterruptedException, Exception  { 
-        ClickURL("http://localhost/web2general/admin/pages/category.php");
+        LoginAdminAndToPage("http://localhost/web2general/admin/pages/category.php");
         driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/input[1]")).sendKeys("");
         Thread.sleep(2000);
         driver.findElement(By.xpath("//*[@id=\"addbtn\"]")).click();

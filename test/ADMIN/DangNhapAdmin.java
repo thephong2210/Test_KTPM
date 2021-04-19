@@ -92,7 +92,7 @@ public class DangNhapAdmin {
     }
 
     // Nhâp url các trang trong admin để được 1 vé đi mũi né nha =)))
-    public static void ClickURL(String url) throws InterruptedException, Exception {
+    public static void LoginAdminAndToPage(String url) throws InterruptedException, Exception {
         setUpClass();
         check_LoginForm_success();
         driver.navigate().to(url);

@@ -38,7 +38,7 @@ public class QLSP_DanhSachSP {
     @Test
     public void check_search_product() throws InterruptedException, Exception{
         //tìm kiếm khi không nhập ký tự
-        ClickURL("http://localhost/web2general/admin/pages/product.php");
+        LoginAdminAndToPage("http://localhost/web2general/admin/pages/product.php");
         driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/input[1]")).getAttribute("validationMessage");
         Thread.sleep(2000);
         driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/input[2]")).click();
@@ -67,7 +67,7 @@ public class QLSP_DanhSachSP {
     //@Test
     public static void check() throws InterruptedException, Exception {
 
-        ClickURL("http://localhost/web2general/admin/pages/product.php");
+        LoginAdminAndToPage("http://localhost/web2general/admin/pages/product.php");
 
     }
 

@@ -31,10 +31,31 @@ import static ADMIN.DangNhapAdmin.*;
 public class TKDT_SP {
 
     @Test
-    public static void check() throws InterruptedException, Exception {
-
-        ClickURL("http://localhost/web2general/admin/pages/statistical_product.php");
-
+    public void check() throws InterruptedException, Exception {
+        LoginAdminAndToPage("http://localhost/web2general/admin/pages/statistical_product.php");
+        Thread.sleep(3000);
+        
+        //Kiểm tra tăng dần --> Sắp xếp SLSP đã bán tăng dần
+        driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[1]/form/select[1]")).sendKeys("Số lượng sản phẩm đã bán");
+        driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[1]/form/select[2]")).sendKeys("Tăng dần");
+        driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[1]/form/input")).click();
+        setUpMethod();
+        
+        //Kiểm tra giảm dần --> Sắp xếp SLSP đã bán giảm dần
+        driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[1]/form/select[1]")).sendKeys("Số lượng sản phẩm đã bán");
+        driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[1]/form/select[2]")).sendKeys("Giảm dần");
+        driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[1]/form/input")).click();
+        setUpMethod();
+        
+        //Hiện tất cả
+        driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[1]/form/a/input")).click();
+        setUpMethod();
+        driver.manage().window().fullscreen();
+    }
+    
+    public void setUpMethod() throws Exception {
+        Thread.sleep(3000);
+        driver.navigate().refresh();
     }
 
 }

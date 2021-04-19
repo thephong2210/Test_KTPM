@@ -36,14 +36,14 @@ public class QLSP_ThemSP {
     @Test
     public static void Add_Product() throws InterruptedException, Exception{
         // để trống tên sản phẩm khi thêm
-        ClickURL("http://localhost/web2general/admin/pages/productadd.php");
+        LoginAdminAndToPage("http://localhost/web2general/admin/pages/productadd.php");
         String errorr =  driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[1]/td[2]/input")).getAttribute("validationMessage");
         Thread.sleep(2000);
         driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/input")).click();
         // lấy đoạn thông báo từ cái thằng input tên sản phẩm
         Assert.assertEquals(errorr, "Please fill out this field.");
         Thread.sleep(2000);
-        //setUpMethod();
+        setUpMethod();
         
         //để trống số lượng sản phẩm khi thêm
         driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[1]/td[2]/input")).sendKeys("Giầy");
@@ -140,10 +140,9 @@ public class QLSP_ThemSP {
         setUpMethod();
         
     }
-//sai
     //@Test
     public static void Del_product()throws InterruptedException, Exception {
-        ClickURL("http://localhost/web2general/admin/pages/product.php?hideid=0");
+        LoginAdminAndToPage("http://localhost/web2general/admin/pages/product.php?hideid=0");
        // driver.navigate().to("http://localhost/web2general/admin/pages/product.php?hideid=0");
         String errrorrr = driver.switchTo().alert().getText();
         Assert.assertEquals(errrorrr,"Bạn có chắc muốn ẩn sản phẩm này không?" );
