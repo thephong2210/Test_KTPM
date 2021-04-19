@@ -33,7 +33,7 @@ public class TKDT_TheoThang {
     @Test
     public static void check() throws InterruptedException, Exception {
 
-        LoginAdminAndToPage("http://localhost/web2general/admin/pages/statistical_months.php");
+        ClickURL("http://localhost/web2general/admin/pages/statistical_months.php");
 
     }
 

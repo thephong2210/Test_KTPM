@@ -32,7 +32,6 @@ import java.util.HashSet;
 public class QLHD_DonHang {
 
     @Test
-<<<<<<< HEAD
     public static void check_donhang() throws InterruptedException, Exception {
         ClickURL("http://localhost/web2general/admin/pages/orders.php");
         //tìm kiếm theo mã đơn hàng
@@ -83,11 +82,6 @@ public class QLHD_DonHang {
         driver.switchTo().alert().accept();
         Thread.sleep(3000);
         driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div/div/div[2]/form[1]/input[1]")).clear();
-=======
-    public static void check() throws InterruptedException, Exception {
-
-        LoginAdminAndToPage("http://localhost/web2general/admin/pages/orders.php");
->>>>>>> aaf1b3bfe3308cf547a4d4b32bfe7e722831514c
 
         //tìm kiếm theo trạng thái
         //khi không nhập ký tự

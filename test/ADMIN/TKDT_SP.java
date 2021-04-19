@@ -33,7 +33,7 @@ public class TKDT_SP {
     @Test
     public static void check() throws InterruptedException, Exception {
 
-        LoginAdminAndToPage("http://localhost/web2general/admin/pages/statistical_product.php");
+        ClickURL("http://localhost/web2general/admin/pages/statistical_product.php");
 
     }
 

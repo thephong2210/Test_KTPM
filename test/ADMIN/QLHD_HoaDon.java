@@ -143,7 +143,7 @@ public class QLHD_HoaDon {
     //@Test
     public static void check() throws InterruptedException, Exception {
 
-        LoginAdminAndToPage("http://localhost/web2general/admin/pages/hoadonlist.php");
+        ClickURL("http://localhost/web2general/admin/pages/hoadonlist.php");
 
     }
 
