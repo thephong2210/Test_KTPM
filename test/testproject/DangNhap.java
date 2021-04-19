@@ -9,6 +9,7 @@ package testproject;
  *
  * @author theph
  */
+import static ADMIN.DangNhapAdmin.setUpClass;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.Alert;
@@ -25,11 +26,11 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import static testproject.DangKy.driver;
+import static testproject.DangKy.*;
 
 public class DangNhap {
 
-    static WebDriver driver;
+   
     String filepath = "exel\\TestcaseSignUp.xlsx";
 
     public DangNhap() {
@@ -74,13 +75,13 @@ public class DangNhap {
 
     @Test
 
-    public void check_LoginForm_success() throws InterruptedException, Exception {
+    public static void check_LoginForm_success() throws InterruptedException, Exception {
         driver.findElement(By.id("loginname")).sendKeys("thephong1412");
         driver.findElement(By.id("loginpassword")).sendKeys("123456");
         driver.findElement(By.id("signinCreate")).click();
         
         Thread.sleep(1000);
-        driver.quit();
+        //driver.quit();
 
     }
 
@@ -88,5 +89,11 @@ public class DangNhap {
         Thread.sleep(2000);
         driver.navigate().refresh();
         driver.manage().window().fullscreen();
+    }
+     public static void LoginClientAndToPage(String url) throws InterruptedException, Exception {
+        setUpClass();
+         check_LoginForm_success();
+        driver.navigate().to(url);
+
     }
 }
