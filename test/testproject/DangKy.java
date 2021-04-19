@@ -49,7 +49,6 @@ public class DangKy {
         driver.manage().window().fullscreen();
     }
 
-   
     @Test
 
     public void check_singupForm_fail() throws InterruptedException, Exception {
@@ -101,8 +100,8 @@ public class DangKy {
 
         lblerror = driver.findElement(By.xpath("//*[@id=\"nhapLaiMatKhau_input-error\"]"));
         Assert.assertEquals(lblerror.getText(), "Vui Lòng Nhập Lại Mật Khẩu");
-         setUpMethod();
-        
+        setUpMethod();
+
 //        Nhập quá kí tự cho phép 
         driver.findElement(By.id("hoTen_input")).sendKeys(rc.ReadCellData(5, 2, filepath));
         driver.findElement(By.id("email_input")).sendKeys(rc.ReadCellData(5, 3, filepath));
@@ -125,17 +124,15 @@ public class DangKy {
 
         lblerror = driver.findElement(By.xpath("//*[@id=\"nhapLaiMatKhau_input-error\"]"));
         Assert.assertEquals(lblerror.getText(), "Mật Khẩu Tối Đa 15 Kí Tự");
-        
+
         setUpMethod();
 
-        
     }
-
 
     @Test
     // kiểm tra đăng nhập thành công.
-   public void check_singupForm_success() throws InterruptedException, Exception {
-        
+    public void check_singupForm_success() throws InterruptedException, Exception {
+
         driver.findElement(By.id("hoTen_input")).sendKeys(rc.ReadCellData(1, 2, filepath));
         driver.findElement(By.id("email_input")).sendKeys(rc.ReadCellData(1, 3, filepath));
         driver.findElement(By.name("ngaySinh_input")).sendKeys(rc.ReadCellData(1, 4, filepath));
@@ -143,10 +140,9 @@ public class DangKy {
         driver.findElement(By.id("matKhau_input")).sendKeys(rc.ReadCellData(1, 1, filepath));
         driver.findElement(By.id("nhapLaiMatKhau_input")).sendKeys(rc.ReadCellData(1, 1, filepath));
         driver.findElement(By.id("SubmitCreate")).click();
-        
+
 //        Thread.sleep(5000);
 //        tearDownMethod();
-
     }
 //     @Test
 //     public void checkcolor()
@@ -192,6 +188,7 @@ public class DangKy {
 //    @BeforeMethod
 ////    //Chạy trước mỗi method test
 ////    // cài đặt reset để tránh làm nhiễu các testcase
+
     public void setUpMethod() throws Exception {
         Thread.sleep(2000);
         driver.navigate().refresh();
