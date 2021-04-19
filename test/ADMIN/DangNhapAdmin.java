@@ -74,14 +74,14 @@ public class DangNhapAdmin {
 
     }
 
-//    @Test
+    @Test
     public static void check_LoginForm_success() throws InterruptedException, Exception {
         driver.findElement(By.xpath("/html/body/div/div/div/div/div[2]/form/fieldset/div[1]/input")).sendKeys("admin");
         driver.findElement(By.xpath("/html/body/div/div/div/div/div[2]/form/fieldset/div[2]/input")).sendKeys("admin");
 
         driver.findElement(By.xpath("/html/body/div/div/div/div/div[2]/form/fieldset/input")).click();
 
-        Thread.sleep(1000);
+        
 
     }
 
@@ -92,7 +92,7 @@ public class DangNhapAdmin {
     }
 
     // Nhâp url các trang trong admin để được 1 vé đi mũi né nha =)))
-    public static void ClickURL(String url) throws InterruptedException, Exception {
+    public static void LoginAdminAndToPage(String url) throws InterruptedException, Exception {
         setUpClass();
         check_LoginForm_success();
         driver.navigate().to(url);

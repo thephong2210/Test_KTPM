@@ -34,6 +34,7 @@ public class QLSP_ThemSP {
 
     // để trống tên sản phẩm khi thêm
     @Test
+<<<<<<< HEAD
     public static void Add_Product() throws InterruptedException, Exception{
         // để trống tên sản phẩm khi thêm
         ClickURL("http://localhost/web2general/admin/pages/productadd.php");
@@ -127,6 +128,25 @@ public class QLSP_ThemSP {
         setUpMethod();
         
         
+=======
+    public static void check() throws InterruptedException, Exception {
+
+        LoginAdminAndToPage("http://localhost/web2general/admin/pages/productadd.php");
+
+    }
+
+    @Test
+    //Thêm sản phẩm
+    public void themSP() throws InterruptedException, Exception {
+        driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[1]/td[2]/input")).sendKeys("GiàyCuaPhong");
+        driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[2]/td[2]/select")).sendKeys("ADIDAS");
+        driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[3]/td[2]/select")).sendKeys("42");
+        driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[4]/td[2]/input")).sendKeys("1");
+        driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[5]/td[2]/textarea")).sendKeys("oooo");
+        driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[6]/td[2]/input")).sendKeys("1000");
+        driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/input")).click();
+
+>>>>>>> aaf1b3bfe3308cf547a4d4b32bfe7e722831514c
     }
     @Test
     public static void edit_Product() throws InterruptedException, Exception {
