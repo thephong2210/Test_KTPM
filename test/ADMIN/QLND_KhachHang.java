@@ -50,6 +50,7 @@ public class QLND_KhachHang {
         AddCustomer_Empty();
         AddCustomer_Fail();
         AddCustomer();
+        BlockCustomer();
         driver.close();
     }
 
@@ -219,7 +220,19 @@ public class QLND_KhachHang {
         //Click button
         buttonadd.click();
     }
+public void BlockCustomer() throws Exception {
 
+        String state = driver.findElement(By.xpath("//*[@id=\"dataTables-example\"]/tbody/tr[1]/td[5]/button")).getText();
+
+        driver.findElement(By.xpath("//*[@id=\"dataTables-example\"]/tbody/tr[1]/td[7]/a[2]/button")).click();
+        error = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/div[1]")).getText();
+        if (state == "Hoạt động") {
+            Assert.assertEquals(error, "Mở khóa người dùng thành công!");
+        } else {
+            Assert.assertEquals(error, "Khóa người dùng thành công!");
+        }
+        setUpMethod();
+    }
     public void setUpMethod() throws Exception {
         Thread.sleep(1500);
         driver.navigate().refresh();
