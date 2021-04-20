@@ -38,7 +38,7 @@ public class QLND_QTV {
 
     String filepath = "exel\\Administrator.xlsx";
     String adduser = "http://localhost:8080/web2general/admin/pages/useradd.php";
-    String admin ="http://localhost:8080/web2general/admin/pages/userlist.php";
+    String admin = "http://localhost:8080/web2general/admin/pages/userlist.php";
     String edituser = "http://localhost:8080/web2general/admin/pages/useredit.php?username=giangthephong";
     String error;
     ReadCellExample rc = new ReadCellExample();
@@ -140,7 +140,7 @@ public class QLND_QTV {
         buttonadd.click();
 
         error = mail.getAttribute("validationMessage");
-        Assert.assertEquals(error, "Please include an '@' in the email address. '" +mailtest+"' is missing an '@'.");// Sai định dạng mail
+        Assert.assertEquals(error, "Please include an '@' in the email address. '" + mailtest + "' is missing an '@'.");// Sai định dạng mail
         setUpMethod();
         //Hoten
         name = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[1]/td[2]/input"));
@@ -199,16 +199,16 @@ public class QLND_QTV {
     @Test
     public void checkEditUser() throws Exception {
         driver.navigate().to(admin);
+        BlockUser();
+        BlockUser();
         EditUser_fail();
         EditUser();
+
         //switch tothe parent window
         //driver.switchTo().window(parent);
     }
-//        driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[1]/td[2]/input")).sendKeys("Lâm");
-//        driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/input")).click();
-//        setUpMethod();
 
-    public void EditUser_fail() throws InterruptedException, Exception{
+    public void EditUser_fail() throws InterruptedException, Exception {
         String parent = driver.getWindowHandle();// It will return the parent window name as a String
         driver.findElement(By.xpath("//*[@id=\"dataTables-example\"]/tbody/tr[1]/td[7]/a[1]/button")).click();
         Set<String> s = driver.getWindowHandles();
@@ -221,88 +221,99 @@ public class QLND_QTV {
             if (!parent.equals(child_window)) {
                 driver.switchTo().window(child_window);
 
-            
-            WebElement nameedit = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[1]/td[2]/input"));
-            WebElement mailedit = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[2]/td[2]/input"));
-            WebElement accountedit = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[3]/td[2]/input"));
-            WebElement newpass = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[4]/td[2]/input"));
-            WebElement newpassconfirm = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[5]/td[2]/input"));
-            WebElement accounttypeedit = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[6]/td[2]/select"));
-            WebElement buttonedit = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/input"));
+                WebElement nameedit = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[1]/td[2]/input"));
+                WebElement mailedit = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[2]/td[2]/input"));
+//                WebElement accountedit = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[3]/td[2]/input"));
+                WebElement newpass = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[4]/td[2]/input"));
+                WebElement newpassconfirm = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[5]/td[2]/input"));
+                WebElement accounttypeedit = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[6]/td[2]/select"));
+                WebElement buttonedit = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/input"));
 //            System.out.println(driver.switchTo().window(child_window).getTitle());
-           
-            mailedit.clear();
-            mailedit.sendKeys("lamgmail.com");
-            buttonedit.click();
-            error = mailedit.getAttribute("validationMessage");
-            Assert.assertEquals(error, "Please include an '@' in the email address. 'lamgmail.com' is missing an '@'.");
-            Thread.sleep(1000);
-            
-            mailedit.clear();
-            mailedit.sendKeys("lam@gmail.com");
-            newpass.clear();
-            newpass.sendKeys("123456b");
-            buttonedit.click();
-            error = driver.switchTo().alert().getText();
-            Assert.assertEquals(error, "Mật khẩu không giống nhau! Mời nhập lại!");
-            driver.switchTo().alert().accept();
-            
-            newpassconfirm.clear();
-            newpassconfirm.sendKeys("123456c");
-            buttonedit.click();
-            error = driver.switchTo().alert().getText();
-            
-            Assert.assertEquals(error, "Mật khẩu không giống nhau! Mời nhập lại!");
-            driver.switchTo().alert().accept();
-            
+
+                mailedit.clear();
+                mailedit.sendKeys("lamgmail.com");
+                buttonedit.click();
+                error = mailedit.getAttribute("validationMessage");
+                Assert.assertEquals(error, "Please include an '@' in the email address. 'lamgmail.com' is missing an '@'.");
+                Thread.sleep(1000);
+
+                mailedit.clear();
+                mailedit.sendKeys("lam@gmail.com");
+                newpass.clear();
+                newpass.sendKeys("123456b");
+                buttonedit.click();
+                error = driver.switchTo().alert().getText();
+                Assert.assertEquals(error, "Mật khẩu không giống nhau! Mời nhập lại!");
+                driver.switchTo().alert().accept();
+
+                newpassconfirm.clear();
+                newpassconfirm.sendKeys("123456c");
+                buttonedit.click();
+                error = driver.switchTo().alert().getText();
+
+                Assert.assertEquals(error, "Mật khẩu không giống nhau! Mời nhập lại!");
+                driver.switchTo().alert().accept();
+
             }
         }
     }
-    
-    
+
     public void EditUser() throws InterruptedException, Exception {
-        
-            WebElement nameedit = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[1]/td[2]/input"));
+
+        WebElement nameedit = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[1]/td[2]/input"));
 //            WebElement mailedit = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[2]/td[2]/input"));
 //            WebElement accountedit = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[3]/td[2]/input"));
-            WebElement newpass = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[4]/td[2]/input"));
-            WebElement newpassconfirm = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[5]/td[2]/input"));
-            WebElement accounttypeedit = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[6]/td[2]/select"));
+        WebElement newpass = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[4]/td[2]/input"));
+        WebElement newpassconfirm = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[5]/td[2]/input"));
+        WebElement accounttypeedit = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[6]/td[2]/select"));
 //            WebElement buttonedit = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/input"));
-            
-            newpass.clear();
-            newpass.sendKeys("a12345");
-            newpassconfirm.clear();
-            newpassconfirm.sendKeys("a12345");
-            nameedit.clear();
-            nameedit.sendKeys("Lâm");
-            driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/input")).click();
-            Thread.sleep(500);
-            
-            WebElement mailedit = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[2]/td[2]/input"));
-            mailedit.clear();
-            mailedit.sendKeys("lam@gmail.com");
-            driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/input")).click();
-            Thread.sleep(500);
-            
-            newpass=driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[4]/td[2]/input"));
-            newpass.clear();
-            newpass.sendKeys("123456a");
-            newpassconfirm = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[5]/td[2]/input"));
-            newpassconfirm.clear();
-            newpassconfirm.sendKeys("123456a");
-            driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/input")).click();
-            Thread.sleep(500);
-            
-            accounttypeedit = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[6]/td[2]/select"));
+
+        newpass.clear();
+        newpass.sendKeys("a12345");
+        newpassconfirm.clear();
+        newpassconfirm.sendKeys("a12345");
+        nameedit.clear();
+        nameedit.sendKeys("Lâm");
+        driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/input")).click();
+        Thread.sleep(500);
+
+        WebElement mailedit = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[2]/td[2]/input"));
+        mailedit.clear();
+        mailedit.sendKeys("lam@gmail.com");
+        driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/input")).click();
+        Thread.sleep(500);
+
+        newpass = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[4]/td[2]/input"));
+        newpass.clear();
+        newpass.sendKeys("123456a");
+        newpassconfirm = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[5]/td[2]/input"));
+        newpassconfirm.clear();
+        newpassconfirm.sendKeys("123456a");
+        driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/input")).click();
+        Thread.sleep(500);
+
+        accounttypeedit = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[6]/td[2]/select"));
 //            accounttypeedit.clear();
-            accounttypeedit.sendKeys("manager");
-            driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/input")).click();
-            Thread.sleep(2000);
-            driver.close();
+        accounttypeedit.sendKeys("manager");
+        driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/input")).click();
+        Thread.sleep(2000);
+        driver.close();
+    }
+
+    public void BlockUser() throws Exception {
+
+        String state = driver.findElement(By.xpath("//*[@id=\"dataTables-example\"]/tbody/tr[1]/td[5]/button")).getText();
+
+        driver.findElement(By.xpath("//*[@id=\"dataTables-example\"]/tbody/tr[1]/td[7]/a[2]/button")).click();
+        error = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/div[1]")).getText();
+        if (state == "Hoạt động") {
+            Assert.assertEquals(error, "Mở khóa người dùng thành công!");
+        } else {
+            Assert.assertEquals(error, "Khóa người dùng thành công!");
         }
-    
-        
+        setUpMethod();
+    }
+
     public void setUpMethod() throws Exception {
         Thread.sleep(2000);
         driver.navigate().refresh();
