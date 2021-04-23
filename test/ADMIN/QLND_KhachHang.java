@@ -38,7 +38,7 @@ public class QLND_KhachHang {
     ReadCellExample rc = new ReadCellExample();
     String addcustomer = "http://localhost:8080/web2general/admin/pages/customeradd.php";
     String error;
-    WebElement name, mail, phonenum, address, deliveryaddress, accountname, pass, confirmpass, buttonadd;
+    WebElement name, mail, accountname, pass, confirmpass, buttonadd;
     String customer = "http://localhost:8080/web2general/admin/pages/customerlist.php";
 
     @Test
@@ -65,12 +65,9 @@ public class QLND_KhachHang {
     public void AddCustomer_Empty() throws InterruptedException, Exception {
         name = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[1]/td[2]/input"));
         mail = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[2]/td[2]/input"));
-        phonenum = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[3]/td[2]/input"));
-        address = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[4]/td[2]/input"));
-        deliveryaddress = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[5]/td[2]/input"));
-        accountname = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[6]/td[2]/input"));
-        pass = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[7]/td[2]/input"));
-        confirmpass = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[8]/td[2]/input"));
+        accountname = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[3]/td[2]/input"));
+        pass = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[4]/td[2]/input"));
+        confirmpass = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[5]/td[2]/input"));
         buttonadd = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/input"));
 
         //Bỏ trống toàn bộ
@@ -89,34 +86,6 @@ public class QLND_KhachHang {
         //Nhập thêm mail
         mail.sendKeys(rc.ReadCellData(6, 1, filepath));
         buttonadd.click();
-        error = phonenum.getAttribute("validationMessage");
-        Assert.assertEquals(error, "Please fill out this field.");
-        Thread.sleep(500);
-
-        //Nhập thêm sđt
-        phonenum.sendKeys(rc.ReadCellData(6, 2, filepath));
-        buttonadd.click();
-        error = address.getAttribute("validationMessage");
-        Assert.assertEquals(error, "Please fill out this field.");
-        Thread.sleep(500);
-
-        //Nhập địa chỉ
-        address.sendKeys(rc.ReadCellData(6, 3, filepath));
-        buttonadd.click();
-        error = deliveryaddress.getAttribute("validationMessage");
-        Assert.assertEquals(error, "Please fill out this field.");
-        Thread.sleep(500);
-
-        //Nhập địa chỉ giao hàng
-        deliveryaddress.sendKeys(rc.ReadCellData(6, 4, filepath));
-        buttonadd.click();
-        error = accountname.getAttribute("validationMessage");
-        Assert.assertEquals(error, "Please fill out this field.");
-        Thread.sleep(500);
-
-        //Nhập tên đăng nhập
-        accountname.sendKeys(rc.ReadCellData(6, 5, filepath));
-        buttonadd.click();
         error = pass.getAttribute("validationMessage");
         Assert.assertEquals(error, "Please fill out this field.");
         Thread.sleep(500);
@@ -127,31 +96,22 @@ public class QLND_KhachHang {
         error = confirmpass.getAttribute("validationMessage");
         Assert.assertEquals(error, "Please fill out this field.");
         setUpMethod();
-
+        
     }
 
     public void AddCustomer_Fail() throws InterruptedException, Exception {
-        name = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[1]/td[2]/input"));//Họ tên
-        mail = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[2]/td[2]/input"));//Email
-        phonenum = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[3]/td[2]/input"));//Số điện thoại
-        address = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[4]/td[2]/input")); //Địa chỉ
-        deliveryaddress = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[5]/td[2]/input"));//Địa chỉ giao hàng
-        accountname = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[6]/td[2]/input"));//Tên đăng nhập
-        pass = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[7]/td[2]/input"));//Mật khẩu
-        confirmpass = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[8]/td[2]/input"));//Nhập lại mật khẩu
+        name = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[1]/td[2]/input"));
+        mail = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[2]/td[2]/input"));
+        accountname = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[3]/td[2]/input"));
+        pass = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[4]/td[2]/input"));
+        confirmpass = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[5]/td[2]/input"));
         buttonadd = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/input"));
-        //TH1: Sai định dạng mail
+//TH1: Sai định dạng mail
         //Họ tên
         name.sendKeys(rc.ReadCellData(2, 0, filepath));
         //Email
         mail.sendKeys(rc.ReadCellData(2, 1, filepath));
-        //Số điện thoại
-        phonenum.sendKeys(rc.ReadCellData(2, 2, filepath));
-        //Địa chỉ
-        address.sendKeys(rc.ReadCellData(2, 3, filepath));
-        //Địa chỉ giao hàng
-        deliveryaddress.sendKeys(rc.ReadCellData(2, 4, filepath));
-        //Tên đăng nhập
+       //Tên đăng nhập
         accountname.sendKeys(rc.ReadCellData(2, 5, filepath));
         //Mật khẩu
         pass.sendKeys(rc.ReadCellData(2, 6, filepath));
@@ -164,26 +124,17 @@ public class QLND_KhachHang {
         setUpMethod();
 
         //TH2: Pass k khớp
-        name = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[1]/td[2]/input"));//Họ tên
-        mail = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[2]/td[2]/input"));//Email
-        phonenum = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[3]/td[2]/input"));//Số điện thoại
-        address = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[4]/td[2]/input")); //Địa chỉ
-        deliveryaddress = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[5]/td[2]/input"));//Địa chỉ giao hàng
-        accountname = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[6]/td[2]/input"));//Tên đăng nhập
-        pass = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[7]/td[2]/input"));//Mật khẩu
-        confirmpass = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[8]/td[2]/input"));//Nhập lại mật khẩu
+        name = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[1]/td[2]/input"));
+        mail = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[2]/td[2]/input"));
+        accountname = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[3]/td[2]/input"));
+        pass = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[4]/td[2]/input"));
+        confirmpass = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[5]/td[2]/input"));
         buttonadd = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/input"));
 
         //Họ tên
         name.sendKeys(rc.ReadCellData(1, 0, filepath));
         //Email
         mail.sendKeys(rc.ReadCellData(1, 1, filepath));
-        //Số điện thoại
-        phonenum.sendKeys(rc.ReadCellData(1, 2, filepath));
-        //Địa chỉ
-        address.sendKeys(rc.ReadCellData(1, 3, filepath));
-        //Địa chỉ giao hàng
-        deliveryaddress.sendKeys(rc.ReadCellData(1, 4, filepath));
         //Tên đăng nhập
         accountname.sendKeys(rc.ReadCellData(1, 5, filepath));
         //Mật khẩu
@@ -199,25 +150,16 @@ public class QLND_KhachHang {
     }
 
     public void AddCustomer() throws InterruptedException, Exception {
-        name = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[1]/td[2]/input"));//Họ tên
-        mail = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[2]/td[2]/input"));//Email
-        phonenum = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[3]/td[2]/input"));//Số điện thoại
-        address = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[4]/td[2]/input")); //Địa chỉ
-        deliveryaddress = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[5]/td[2]/input"));//Địa chỉ giao hàng
-        accountname = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[6]/td[2]/input"));//Tên đăng nhập
-        pass = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[7]/td[2]/input"));//Mật khẩu
-        confirmpass = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[8]/td[2]/input"));//Nhập lại mật khẩu
+        name = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[1]/td[2]/input"));
+        mail = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[2]/td[2]/input"));
+        accountname = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[3]/td[2]/input"));
+        pass = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[4]/td[2]/input"));
+        confirmpass = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[5]/td[2]/input"));
         buttonadd = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/input"));
-        //Họ tên
+//Họ tên
         name.sendKeys(rc.ReadCellData(6, 0, filepath));
         //Email
         mail.sendKeys(rc.ReadCellData(6, 1, filepath));
-        //Số điện thoại
-        phonenum.sendKeys(rc.ReadCellData(6, 2, filepath));
-        //Địa chỉ
-        address.sendKeys(rc.ReadCellData(6, 3, filepath));
-        //Địa chỉ giao hàng
-        deliveryaddress.sendKeys(rc.ReadCellData(6, 4, filepath));
         //Tên đăng nhập
         accountname.sendKeys(rc.ReadCellData(6, 5, filepath));
         //Mật khẩu
@@ -230,9 +172,9 @@ public class QLND_KhachHang {
 
     public void BlockCustomer() throws InterruptedException, Exception {
 
-        String state = driver.findElement(By.xpath("//*[@id=\"dataTables-example\"]/tbody/tr[1]/td[8]/button")).getText();
+        String state = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/div[1]")).getText();
 
-        driver.findElement(By.xpath("//*[@id=\"dataTables-example\"]/tbody/tr[1]/td[9]/a[2]/button")).click();
+        driver.findElement(By.xpath("//*[@id=\"dataTables-example\"]/tbody/tr[1]/td[6]/a[2]/button")).click();
         error = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/div[1]")).getText();
         if (state == "Hoạt động") {
             Assert.assertEquals(error, "Khóa người dùng thành công!");
@@ -244,7 +186,7 @@ public class QLND_KhachHang {
 
     public void EditCustomer_Empty() throws InterruptedException, Exception {
         String parent = driver.getWindowHandle();// It will return the parent window name as a String
-        driver.findElement(By.xpath("//*[@id=\"dataTables-example\"]/tbody/tr[1]/td[9]/a[1]/button")).click();
+        driver.findElement(By.xpath("//*[@id=\"dataTables-example\"]/tbody/tr[1]/td[6]/a[1]/button")).click();
         Set<String> s = driver.getWindowHandles();
         // Now iterate using Iterator
         Iterator<String> I1 = s.iterator();
@@ -257,18 +199,12 @@ public class QLND_KhachHang {
 
                 WebElement nameedit = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[1]/td[2]/input"));//Họ tên
                 WebElement mailedit = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[2]/td[2]/input"));//Email
-                WebElement phonenumedit = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[3]/td[2]/input"));//Số điện thoại
-                WebElement addressedit = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[4]/td[2]/input")); //Địa chỉ
-                WebElement deliveryaddressedit = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[5]/td[2]/input"));//Địa chỉ giao hàng
-                WebElement accountnameedit = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[6]/td[2]/input"));//Tên đăng nhập
-                WebElement passedit = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[7]/td[2]/input"));//Mật khẩu
-                WebElement confirmpassedit = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[8]/td[2]/input"));//Nhập lại mật khẩu
+                WebElement accountnameedit = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[3]/td[2]/input"));//Tên đăng nhập
+                WebElement passedit = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[4]/td[2]/input"));//Mật khẩu
+                WebElement confirmpassedit = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[5]/td[2]/input"));//Nhập lại mật khẩu
                 WebElement buttonedit = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/input"));
                 nameedit.clear();
                 mailedit.clear();
-                phonenumedit.clear();
-                addressedit.clear();
-                deliveryaddressedit.clear();
                 accountnameedit.clear();
                 passedit.clear();
                 confirmpassedit.clear();
@@ -284,33 +220,27 @@ public class QLND_KhachHang {
 
         //TH1: email sai định dạng
         WebElement nameedit = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[1]/td[2]/input"));//Họ tên
-        WebElement mailedit = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[2]/td[2]/input"));//Email
-        WebElement phonenumedit = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[3]/td[2]/input"));//Số điện thoại
-        WebElement addressedit = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[4]/td[2]/input")); //Địa chỉ
-        WebElement deliveryaddressedit = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[5]/td[2]/input"));//Địa chỉ giao hàng
-        WebElement accountnameedit = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[6]/td[2]/input"));//Tên đăng nhập
-        WebElement passedit = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[7]/td[2]/input"));//Mật khẩu
-        WebElement confirmpassedit = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[8]/td[2]/input"));//Nhập lại mật khẩu
         WebElement buttonedit = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/input"));
 
         nameedit.clear();
         nameedit.sendKeys(rc.ReadCellData(2, 0, filepath));
+        WebElement mailedit = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[2]/td[2]/input"));//Email
         mailedit.clear();
         mailedit.sendKeys(rc.ReadCellData(2, 1, filepath));
         buttonedit.click();
-        error = mail.getAttribute("validationMessage");
+        error = mailedit.getAttribute("validationMessage");
         Assert.assertEquals(error, "Please include an '@' in the email address. '" + rc.ReadCellData(2, 1, filepath) + "' is missing an '@'.");
         Thread.sleep(1000);
-        phonenumedit.clear();
-        phonenumedit.sendKeys(rc.ReadCellData(2, 2, filepath));
-        addressedit.clear();
-        addressedit.sendKeys(rc.ReadCellData(2, 3, filepath));
-        deliveryaddressedit.clear();
-        deliveryaddressedit.sendKeys(rc.ReadCellData(2, 4, filepath));
+        
+        mailedit.clear();
+        mailedit.sendKeys(rc.ReadCellData(1, 1, filepath));
+        WebElement accountnameedit = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[3]/td[2]/input"));//Tên đăng nhập
         accountnameedit.clear();
         accountnameedit.sendKeys(rc.ReadCellData(2, 5, filepath));
+        WebElement passedit = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[4]/td[2]/input"));//Mật khẩu
         passedit.clear();
         passedit.sendKeys(rc.ReadCellData(1, 6, filepath));
+        WebElement confirmpassedit = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[5]/td[2]/input"));//Nhập lại mật khẩu
         confirmpassedit.clear();
         confirmpassedit.sendKeys(rc.ReadCellData(1, 7, filepath));
         buttonedit.click();
@@ -335,25 +265,16 @@ public class QLND_KhachHang {
     public void EditCustomer() throws Exception {
         WebElement nameedit = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[1]/td[2]/input"));//Họ tên
         WebElement mailedit = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[2]/td[2]/input"));//Email
-        WebElement phonenumedit = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[3]/td[2]/input"));//Số điện thoại
-        WebElement addressedit = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[4]/td[2]/input")); //Địa chỉ
-        WebElement deliveryaddressedit = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[5]/td[2]/input"));//Địa chỉ giao hàng
-        WebElement accountnameedit = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[6]/td[2]/input"));//Tên đăng nhập
-        WebElement passedit = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[7]/td[2]/input"));//Mật khẩu
-        WebElement confirmpassedit = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[8]/td[2]/input"));//Nhập lại mật khẩu
+        WebElement accountnameedit = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[3]/td[2]/input"));//Tên đăng nhập
+        WebElement passedit = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[4]/td[2]/input"));//Mật khẩu
+        WebElement confirmpassedit = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[5]/td[2]/input"));//Nhập lại mật khẩu
         WebElement buttonedit = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/input"));
         nameedit.clear();
         nameedit.sendKeys(rc.ReadCellData(6, 0, filepath));
         mailedit.clear();
         mailedit.sendKeys(rc.ReadCellData(6, 1, filepath));
-        phonenumedit.clear();
-        phonenumedit.sendKeys(rc.ReadCellData(6, 2, filepath));
-        addressedit.clear();
-        addressedit.sendKeys(rc.ReadCellData(6, 3, filepath));
-        deliveryaddressedit.clear();
-        deliveryaddressedit.sendKeys(rc.ReadCellData(6, 4, filepath));
         accountnameedit.clear();
-        accountname.sendKeys(rc.ReadCellData(6, 5, filepath));
+        accountnameedit.sendKeys(rc.ReadCellData(6, 5, filepath));
         passedit.clear();
         passedit.sendKeys(rc.ReadCellData(6, 6, filepath));
         confirmpassedit.clear();
