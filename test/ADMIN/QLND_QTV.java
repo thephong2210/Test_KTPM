@@ -54,8 +54,8 @@ public class QLND_QTV {
         driver.navigate().to(adduser);//Chuyển đến trang thêm admin
 
         AddUser_Empty();
-//        AddUser_Fail();
-//        AddUser();
+        AddUser_Fail();
+        AddUser();
     }
 
     public void AddUser_Empty() throws InterruptedException, Exception {
@@ -301,15 +301,13 @@ public class QLND_QTV {
     }
 
     public void BlockUser() throws Exception {
-
         String state = driver.findElement(By.xpath("//*[@id=\"dataTables-example\"]/tbody/tr[1]/td[5]/button")).getText();
-
         driver.findElement(By.xpath("//*[@id=\"dataTables-example\"]/tbody/tr[1]/td[7]/a[2]/button")).click();
         error = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/div[1]")).getText();
         if (state == "Hoạt động") {
-            Assert.assertEquals(error, "Mở khóa người dùng thành công!");
-        } else {
             Assert.assertEquals(error, "Khóa người dùng thành công!");
+        } else if (state =="Khóa"){
+            Assert.assertEquals(error, "Mở khóa người dùng thành công!");
         }
         setUpMethod();
     }
