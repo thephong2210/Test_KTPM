@@ -201,6 +201,7 @@ public class QLND_QTV {
         driver.navigate().to(admin);
         BlockUser();
         BlockUser();
+        EditUser_Empty();
         EditUser_fail();
         EditUser();
 
@@ -208,7 +209,7 @@ public class QLND_QTV {
         //driver.switchTo().window(parent);
     }
 
-    public void EditUser_fail() throws InterruptedException, Exception {
+    public void EditUser_Empty() throws InterruptedException, Exception {
         String parent = driver.getWindowHandle();// It will return the parent window name as a String
         driver.findElement(By.xpath("//*[@id=\"dataTables-example\"]/tbody/tr[1]/td[7]/a[1]/button")).click();
         Set<String> s = driver.getWindowHandles();
@@ -220,6 +221,41 @@ public class QLND_QTV {
 
             if (!parent.equals(child_window)) {
                 driver.switchTo().window(child_window);
+                    WebElement nameedit = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[1]/td[2]/input"));
+                WebElement mailedit = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[2]/td[2]/input"));
+//                WebElement accountedit = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[3]/td[2]/input"));
+                WebElement newpass = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[4]/td[2]/input"));
+                WebElement newpassconfirm = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[5]/td[2]/input"));
+                WebElement accounttypeedit = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[6]/td[2]/select"));
+                WebElement buttonedit = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/input"));
+                nameedit.clear();
+                mailedit.clear();
+                accounttypeedit.clear();
+                newpass.clear();
+                newpassconfirm.clear();
+                accounttypeedit.clear();
+                buttonedit.click();
+                error = nameedit.getAttribute("validationMessage");
+                error = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/div")).getText();
+                Assert.assertEquals(error, "Không được để trống!");
+                
+                
+            }
+        }
+    }
+
+    public void EditUser_fail() throws InterruptedException, Exception {
+//        String parent = driver.getWindowHandle();// It will return the parent window name as a String
+//        driver.findElement(By.xpath("//*[@id=\"dataTables-example\"]/tbody/tr[1]/td[7]/a[1]/button")).click();
+//        Set<String> s = driver.getWindowHandles();
+//        // Now iterate using Iterator
+//        Iterator<String> I1 = s.iterator();
+//        while (I1.hasNext()) {
+//
+//            String child_window = I1.next();
+//
+//            if (!parent.equals(child_window)) {
+//                driver.switchTo().window(child_window);
 
                 WebElement nameedit = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[1]/td[2]/input"));
                 WebElement mailedit = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[2]/td[2]/input"));
@@ -255,8 +291,8 @@ public class QLND_QTV {
                 driver.switchTo().alert().accept();
 
             }
-        }
-    }
+        
+    
 
     public void EditUser() throws InterruptedException, Exception {
 
@@ -306,7 +342,7 @@ public class QLND_QTV {
         error = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/div[1]")).getText();
         if (state == "Hoạt động") {
             Assert.assertEquals(error, "Khóa người dùng thành công!");
-        } else if (state =="Khóa"){
+        } else if (state == "Khóa") {
             Assert.assertEquals(error, "Mở khóa người dùng thành công!");
         }
         setUpMethod();

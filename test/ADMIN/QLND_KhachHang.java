@@ -33,7 +33,6 @@ import static testproject.DangKy.driver;
 import testproject.ReadCellExample;
 
 public class QLND_KhachHang {
-
     String filepath = "exel\\Customer.xlsx";
     ReadCellExample rc = new ReadCellExample();
     String addcustomer = "http://localhost:8080/web2general/admin/pages/customeradd.php";
@@ -82,16 +81,24 @@ public class QLND_KhachHang {
         error = mail.getAttribute("validationMessage");
         Assert.assertEquals(error, "Please fill out this field.");
         Thread.sleep(500);
-
+        
+        
         //Nhập thêm mail
         mail.sendKeys(rc.ReadCellData(6, 1, filepath));
+        buttonadd.click();
+        error = accountname.getAttribute("validationMessage");
+        Assert.assertEquals(error, "Please fill out this field.");
+        Thread.sleep(500);
+        
+        //Nhập thêm tên đăng nhập
+        accountname.sendKeys(rc.ReadCellData(6, 2, filepath));
         buttonadd.click();
         error = pass.getAttribute("validationMessage");
         Assert.assertEquals(error, "Please fill out this field.");
         Thread.sleep(500);
-
+        
         //Nhập pass
-        pass.sendKeys(rc.ReadCellData(6, 6, filepath));
+        pass.sendKeys(rc.ReadCellData(6, 3, filepath));
         buttonadd.click();
         error = confirmpass.getAttribute("validationMessage");
         Assert.assertEquals(error, "Please fill out this field.");
@@ -112,11 +119,11 @@ public class QLND_KhachHang {
         //Email
         mail.sendKeys(rc.ReadCellData(2, 1, filepath));
        //Tên đăng nhập
-        accountname.sendKeys(rc.ReadCellData(2, 5, filepath));
+        accountname.sendKeys(rc.ReadCellData(2, 2, filepath));
         //Mật khẩu
-        pass.sendKeys(rc.ReadCellData(2, 6, filepath));
+        pass.sendKeys(rc.ReadCellData(2, 3, filepath));
         //Nhập lại mật khẩu
-        confirmpass.sendKeys(rc.ReadCellData(2, 7, filepath));
+        confirmpass.sendKeys(rc.ReadCellData(2, 4, filepath));
         //Click button
         buttonadd.click();
         error = mail.getAttribute("validationMessage");
@@ -136,11 +143,11 @@ public class QLND_KhachHang {
         //Email
         mail.sendKeys(rc.ReadCellData(1, 1, filepath));
         //Tên đăng nhập
-        accountname.sendKeys(rc.ReadCellData(1, 5, filepath));
+        accountname.sendKeys(rc.ReadCellData(1, 2, filepath));
         //Mật khẩu
-        pass.sendKeys(rc.ReadCellData(1, 6, filepath));
+        pass.sendKeys(rc.ReadCellData(1, 3, filepath));
         //Nhập lại mật khẩu
-        confirmpass.sendKeys(rc.ReadCellData(1, 7, filepath));
+        confirmpass.sendKeys(rc.ReadCellData(1, 4, filepath));
         //Click button
         buttonadd.click();
         error = driver.switchTo().alert().getText();
@@ -161,11 +168,11 @@ public class QLND_KhachHang {
         //Email
         mail.sendKeys(rc.ReadCellData(6, 1, filepath));
         //Tên đăng nhập
-        accountname.sendKeys(rc.ReadCellData(6, 5, filepath));
+        accountname.sendKeys(rc.ReadCellData(6, 2, filepath));
         //Mật khẩu
-        pass.sendKeys(rc.ReadCellData(6, 6, filepath));
+        pass.sendKeys(rc.ReadCellData(6, 3, filepath));
         //Nhập lại mật khẩu
-        confirmpass.sendKeys(rc.ReadCellData(6, 7, filepath));
+        confirmpass.sendKeys(rc.ReadCellData(6, 4, filepath));
         //Click button
         buttonadd.click();
     }
@@ -233,16 +240,16 @@ public class QLND_KhachHang {
         Thread.sleep(1000);
         
         mailedit.clear();
-        mailedit.sendKeys(rc.ReadCellData(1, 1, filepath));
+        mailedit.sendKeys(rc.ReadCellData(1, 1, filepath));//Nhập lại mail đúng
         WebElement accountnameedit = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[3]/td[2]/input"));//Tên đăng nhập
         accountnameedit.clear();
-        accountnameedit.sendKeys(rc.ReadCellData(2, 5, filepath));
+        accountnameedit.sendKeys(rc.ReadCellData(2, 2, filepath));
         WebElement passedit = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[4]/td[2]/input"));//Mật khẩu
         passedit.clear();
-        passedit.sendKeys(rc.ReadCellData(1, 6, filepath));
+        passedit.sendKeys(rc.ReadCellData(1, 3, filepath));
         WebElement confirmpassedit = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[5]/td[2]/input"));//Nhập lại mật khẩu
         confirmpassedit.clear();
-        confirmpassedit.sendKeys(rc.ReadCellData(1, 7, filepath));
+        confirmpassedit.sendKeys(rc.ReadCellData(1, 4, filepath));
         buttonedit.click();
         error = driver.switchTo().alert().getText();
         Assert.assertEquals(error, "Mật khẩu không giống nhau! Mời nhập lại!");
@@ -274,11 +281,11 @@ public class QLND_KhachHang {
         mailedit.clear();
         mailedit.sendKeys(rc.ReadCellData(6, 1, filepath));
         accountnameedit.clear();
-        accountnameedit.sendKeys(rc.ReadCellData(6, 5, filepath));
+        accountnameedit.sendKeys(rc.ReadCellData(6, 2, filepath));
         passedit.clear();
-        passedit.sendKeys(rc.ReadCellData(6, 6, filepath));
+        passedit.sendKeys(rc.ReadCellData(6, 3, filepath));
         confirmpassedit.clear();
-        confirmpassedit.sendKeys(rc.ReadCellData(6, 7, filepath));
+        confirmpassedit.sendKeys(rc.ReadCellData(6, 4, filepath));
         buttonedit.click();
         Thread.sleep(1000);
         driver.close();
