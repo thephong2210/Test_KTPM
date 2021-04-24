@@ -192,7 +192,8 @@ public class QLND_QTV {
         accounttype.sendKeys(rc.ReadCellData(8, 5, filepath));
         //Click button
         buttonadd.click();
-
+//        error= driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/div")).getText();
+//        Assert.assertEquals(error, "Thêm người dùng thành công!");
         setUpMethod();
     }
 
