@@ -50,7 +50,7 @@ public class DangKy {
     }
 
    
-    @Test
+    //@Test
 
     public void check_singupForm_fail() throws InterruptedException, Exception {
 // Nhập thấp hơn kí tự tối thiểu         
@@ -161,12 +161,12 @@ public class DangKy {
 //    @BeforeMethod
 ////    //Chạy trước mỗi method test
 ////    // cài đặt reset để tránh làm nhiễu các testcase
-    public static void setUpMethod() throws Exception {
+       public static void setUpMethod() throws Exception {
         Thread.sleep(2000);
         driver.navigate().refresh();
-        driver.manage().window().fullscreen();
-
+        driver.manage().window().maximize();
     }
+
 
     @AfterClass
     //Chạy trước tất cả method test trong class hiện tại

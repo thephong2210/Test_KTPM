@@ -30,7 +30,6 @@ import static testproject.DangKy.*;
 
 public class DangNhap {
 
-   
     String filepath = "exel\\TestcaseSignUp.xlsx";
 
     public DangNhap() {
@@ -47,9 +46,9 @@ public class DangNhap {
         driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(20000, TimeUnit.MILLISECONDS);
         driver.get("http://localhost/web2general/registration.php");
-        //driver.manage().window().maximize();
+        driver.manage().window().maximize();
         //driver.manage().window().setSize(new Dimension(800, 600));
-        driver.manage().window().fullscreen();
+//        driver.manage().window().fullscreen();
     }
 
     @Test
@@ -68,31 +67,47 @@ public class DangNhap {
 
         driver.findElement(By.id("loginname")).sendKeys("thephong1412");
         driver.findElement(By.id("loginpassword")).sendKeys("12345");
+        Thread.sleep(2000);
+
         driver.findElement(By.id("signinCreate")).click();
+        WebElement lberror = driver.findElement(By.id("thongbao"));
+        Assert.assertEquals(lberror.getText(), "SAI THÔNG TIN ĐĂNG NHẬP!!!");
+
+        setUpMethod();
+
+        driver.findElement(By.id("loginname")).sendKeys("thephong1412");
+        driver.findElement(By.id("signinCreate")).click();
+        al = driver.switchTo().alert().getText();
+        Assert.assertEquals(al, "Password không được để trống");
+        Thread.sleep(2000);
+        driver.switchTo().alert().accept();
+
+        setUpMethod();
+
+        driver.findElement(By.id("signinCreate")).click();
+        al = driver.switchTo().alert().getText();
+        Assert.assertEquals(al, "Tên đăng nhập không được để trống");
+        Thread.sleep(2000);
+        driver.switchTo().alert().accept();
 
         setUpMethod();
     }
 
     @Test
-
     public static void check_LoginForm_success() throws InterruptedException, Exception {
         driver.findElement(By.id("loginname")).sendKeys("thephong1412");
         driver.findElement(By.id("loginpassword")).sendKeys("123456");
         driver.findElement(By.id("signinCreate")).click();
-        
+
         Thread.sleep(1000);
         //driver.quit();
 
     }
 
-    public void setUpMethod() throws Exception {
-        Thread.sleep(2000);
-        driver.navigate().refresh();
-        driver.manage().window().fullscreen();
-    }
-     public static void LoginClientAndToPage(String url) throws InterruptedException, Exception {
+
+    public static void LoginClientAndToPage(String url) throws InterruptedException, Exception {
         setUpClass();
-         check_LoginForm_success();
+        check_LoginForm_success();
         driver.navigate().to(url);
 
     }
