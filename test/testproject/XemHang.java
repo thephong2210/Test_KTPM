@@ -23,25 +23,26 @@ public class XemHang {
     
     @Test
     public static void check() throws InterruptedException, Exception {
-        LoginClientAndToPage("http://localhost:8080/web2general/");
+        LoginClientAndToPage("http://localhost/web2general/");
     }
     @Test
     public void checkXemHang() throws InterruptedException, Exception{
         checkProduct();
-        driver.navigate().to("http://localhost:8080/web2general/");
+        Thread.sleep(1000);
+        driver.navigate().to("http://localhost/web2general/");
         checkProduct2();
-        driver.navigate().to("http://localhost:8080/web2general/");
+        Thread.sleep(1000);
+        driver.navigate().to("http://localhost/web2general/");
         checkProduct3();
-        driver.navigate().to("http://localhost:8080/web2general/");
+        Thread.sleep(1000);
+        driver.navigate().to("http://localhost/web2general/");
         checkProduct4();
-        driver.navigate().to("http://localhost:8080/web2general/");
-        checkProduct5();
     }
     //Sản phẩm mới
     public void checkProduct()throws InterruptedException, Exception{
         testname = driver.findElement(By.xpath("/html/body/section[2]/div/div[2]/div[1]/div/div[2]/div/div/div/div[1]/div/div[1]/div/div/div/div[2]/div[2]/a/span")).getText();
         testprice = driver.findElement(By.xpath("/html/body/section[2]/div/div[2]/div[1]/div/div[2]/div/div/div/div[1]/div/div[1]/div/div/div/div[2]/div[3]/span")).getText();
-        driver.navigate().to("http://localhost:8080/web2general/single-product.php?maSanPham=64");
+        driver.navigate().to("http://localhost/web2general/single-product.php?maSanPham=64");
         checkname = driver.findElement(By.xpath("/html/body/section[2]/div/div[2]/div[1]/div[1]/div[2]/div/h2")).getText();
         checkprice = driver.findElement(By.xpath("/html/body/section[2]/div/div[2]/div[1]/div[1]/div[2]/div/div[4]/h2")).getText();
         Assert.assertEquals(testname, checkname);
@@ -51,34 +52,28 @@ public class XemHang {
     public void checkProduct2()throws InterruptedException, Exception{
         testname = driver.findElement(By.xpath("/html/body/section[2]/div/div[2]/div[2]/div/div[2]/div/div/div/div[1]/div/div[1]/div/div/div/div[2]/a")).getText();
         testprice = driver.findElement(By.xpath("/html/body/section[2]/div/div[2]/div[2]/div/div[2]/div/div/div/div[1]/div/div[1]/div/div/div/div[2]/div[2]/span")).getText();
-        driver.navigate().to("http://localhost:8080/web2general/single-product.php?maSanPham=64");
+        driver.navigate().to("http://localhost/web2general/single-product.php?maSanPham=0");
         checkname = driver.findElement(By.xpath("/html/body/section[2]/div/div[2]/div[1]/div[1]/div[2]/div/h2")).getText();
         checkprice = driver.findElement(By.xpath("/html/body/section[2]/div/div[2]/div[1]/div[1]/div[2]/div/div[4]/h2")).getText();
         Assert.assertEquals(testname, checkname);
         Assert.assertEquals(testprice,checkprice); 
     }
+    //Sản phẩm nổi bật
     public void checkProduct3()throws InterruptedException, Exception{
-        testname = driver.findElement(By.xpath("/html/body/section[2]/div/div[2]/div[1]/div/div[2]/div/div/div/div[1]/div/div[1]/div/div/div/div[2]/div[2]/a/span")).getText();
-        testprice = driver.findElement(By.xpath("/html/body/section[2]/div/div[2]/div[1]/div/div[2]/div/div/div/div[1]/div/div[1]/div/div/div/div[2]/div[3]/span")).getText();
-        driver.navigate().to("http://localhost:8080/web2general/single-product.php?maSanPham=64");
+//        driver.findElement(By.xpath("/html/body/section[2]/div/div[4]/div/div[2]/div/div/div[2]/div/div[1]/i")).click();//click mũi tên <-
+        testname = driver.findElement(By.xpath("/html/body/section[2]/div/div[4]/div/div[2]/div/div/div[1]/div/div[4]/div/div/div[2]/a/span")).getText();
+        testprice = driver.findElement(By.xpath("/html/body/section[2]/div/div[4]/div/div[2]/div/div/div[1]/div/div[4]/div/div/div[2]/div[2]/span")).getText();
+        driver.navigate().to("http://localhost/web2general/single-product.php?maSanPham=5");
         checkname = driver.findElement(By.xpath("/html/body/section[2]/div/div[2]/div[1]/div[1]/div[2]/div/h2")).getText();
         checkprice = driver.findElement(By.xpath("/html/body/section[2]/div/div[2]/div[1]/div[1]/div[2]/div/div[4]/h2")).getText();
         Assert.assertEquals(testname, checkname);
         Assert.assertEquals(testprice,checkprice); 
     }
+    //Sản phẩm Nike
     public void checkProduct4()throws InterruptedException, Exception{
-        testname = driver.findElement(By.xpath("/html/body/section[2]/div/div[2]/div[1]/div/div[2]/div/div/div/div[1]/div/div[1]/div/div/div/div[2]/div[2]/a/span")).getText();
-        testprice = driver.findElement(By.xpath("/html/body/section[2]/div/div[2]/div[1]/div/div[2]/div/div/div/div[1]/div/div[1]/div/div/div/div[2]/div[3]/span")).getText();
-        driver.navigate().to("http://localhost:8080/web2general/single-product.php?maSanPham=64");
-        checkname = driver.findElement(By.xpath("/html/body/section[2]/div/div[2]/div[1]/div[1]/div[2]/div/h2")).getText();
-        checkprice = driver.findElement(By.xpath("/html/body/section[2]/div/div[2]/div[1]/div[1]/div[2]/div/div[4]/h2")).getText();
-        Assert.assertEquals(testname, checkname);
-        Assert.assertEquals(testprice,checkprice); 
-    }
-    public void checkProduct5()throws InterruptedException, Exception{
-        testname = driver.findElement(By.xpath("/html/body/section[2]/div/div[2]/div[1]/div/div[2]/div/div/div/div[1]/div/div[1]/div/div/div/div[2]/div[2]/a/span")).getText();
-        testprice = driver.findElement(By.xpath("/html/body/section[2]/div/div[2]/div[1]/div/div[2]/div/div/div/div[1]/div/div[1]/div/div/div/div[2]/div[3]/span")).getText();
-        driver.navigate().to("http://localhost:8080/web2general/single-product.php?maSanPham=64");
+        testname = driver.findElement(By.xpath("/html/body/section[2]/div/div[6]/div[1]/div[2]/div/div/div[1]/div/div[4]/div/div/div[2]/a/span")).getText();
+        testprice = driver.findElement(By.xpath("/html/body/section[2]/div/div[6]/div[1]/div[2]/div/div/div[1]/div/div[4]/div/div/div[2]/div[2]/span")).getText();
+        driver.navigate().to("http://localhost/web2general/single-product.php?maSanPham=32");
         checkname = driver.findElement(By.xpath("/html/body/section[2]/div/div[2]/div[1]/div[1]/div[2]/div/h2")).getText();
         checkprice = driver.findElement(By.xpath("/html/body/section[2]/div/div[2]/div[1]/div[1]/div[2]/div/div[4]/h2")).getText();
         Assert.assertEquals(testname, checkname);
