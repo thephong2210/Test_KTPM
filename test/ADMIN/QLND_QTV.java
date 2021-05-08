@@ -49,7 +49,7 @@ public class QLND_QTV {
         LoginAdminAndToPage("http://localhost:8080/web2general/admin/pages/userlist.php");
     }
 
-//    @Test
+    @Test
     public void check_AddUser() throws InterruptedException, Exception {
         driver.navigate().to(adduser);//Chuyển đến trang thêm admin
 
