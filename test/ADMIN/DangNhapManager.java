@@ -28,11 +28,11 @@ import org.testng.annotations.Test;
 import testproject.ReadCellExample;
 import static testproject.DangKy.driver;
 
-public class DangNhapAdmin {
+public class DangNhapManager {
 
     String filepath = "exel\\TestcaseSignUp.xlsx";
-    String error;
-    public DangNhapAdmin() {
+
+    public DangNhapManager(){
     }
     ReadCellExample rc = new ReadCellExample();
     TKDT_SP thongKeAdmin = new TKDT_SP();
@@ -53,43 +53,31 @@ public class DangNhapAdmin {
     }
 
 //    @Test
-
-    public void check_LoginForm_fail() throws InterruptedException, Exception {
-        // Bỏ trống
-
-        driver.findElement(By.xpath("/html/body/div/div/div/div/div[2]/form/fieldset/input")).click();
-        Thread.sleep(2000);
-
-        WebElement lblerror = driver.findElement(By.xpath("/html/body/div/div/div/div/span/div"));
-
-        setUpMethod();
-
-        // nhập sai 
-        driver.findElement(By.xpath("/html/body/div/div/div/div/div[2]/form/fieldset/div[1]/input")).sendKeys("username_sai");
-        driver.findElement(By.xpath("/html/body/div/div/div/div/div[2]/form/fieldset/div[2]/input")).sendKeys("password_sai");
-        Thread.sleep(2000);
-        driver.findElement(By.xpath("/html/body/div/div/div/div/div[2]/form/fieldset/input")).click();
-
-        setUpMethod();
-
-    }
-    @Test
-    public void check_LoginForm_block() throws InterruptedException, Exception {
-        // nhập tài khoản bị khóa
-        driver.findElement(By.xpath("/html/body/div/div/div/div/div[2]/form/fieldset/div[1]/input")).sendKeys("giangphong");
-        driver.findElement(By.xpath("/html/body/div/div/div/div/div[2]/form/fieldset/div[2]/input")).sendKeys("123456a");
-        Thread.sleep(500);
-        driver.findElement(By.xpath("/html/body/div/div/div/div/div[2]/form/fieldset/input")).click();
-        error= driver.findElement(By.xpath("/html/body/div[1]/div/div/div/span/div")).getText();
-        Assert.assertEquals(error, "Tài khoản đã bị khóa!");
-        setUpMethod();
-
-    }
+//
+//    public void check_LoginForm_fail() throws InterruptedException, Exception {
+//        // Bỏ trống
+//
+//        driver.findElement(By.xpath("/html/body/div/div/div/div/div[2]/form/fieldset/input")).click();
+//        Thread.sleep(2000);
+//
+//        WebElement lblerror = driver.findElement(By.xpath("/html/body/div/div/div/div/span/div"));
+//
+//        setUpMethod();
+//
+//        // nhập sai 
+//        driver.findElement(By.xpath("/html/body/div/div/div/div/div[2]/form/fieldset/div[1]/input")).sendKeys("username_sai");
+//        driver.findElement(By.xpath("/html/body/div/div/div/div/div[2]/form/fieldset/div[2]/input")).sendKeys("password_sai");
+//        Thread.sleep(2000);
+//        driver.findElement(By.xpath("/html/body/div/div/div/div/div[2]/form/fieldset/input")).click();
+//
+//        setUpMethod();
+//
+//    }
 
 //    @Test
     public static void check_LoginForm_success() throws InterruptedException, Exception {
-        driver.findElement(By.xpath("/html/body/div/div/div/div/div[2]/form/fieldset/div[1]/input")).sendKeys("admin");
-        driver.findElement(By.xpath("/html/body/div/div/div/div/div[2]/form/fieldset/div[2]/input")).sendKeys("admin");
+        driver.findElement(By.xpath("/html/body/div/div/div/div/div[2]/form/fieldset/div[1]/input")).sendKeys("manager1");
+        driver.findElement(By.xpath("/html/body/div/div/div/div/div[2]/form/fieldset/div[2]/input")).sendKeys("123");
 
         driver.findElement(By.xpath("/html/body/div/div/div/div/div[2]/form/fieldset/input")).click();
 
@@ -104,7 +92,7 @@ public class DangNhapAdmin {
     }
 
     // Nhâp url các trang trong admin để được 1 vé đi mũi né nha =)))
-    public static void LoginAdminAndToPage(String url) throws InterruptedException, Exception {
+    public static void LoginManagerAndToPage(String url) throws InterruptedException, Exception {
         setUpClass();
         check_LoginForm_success();
         driver.navigate().to(url);
