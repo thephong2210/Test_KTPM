@@ -22,6 +22,7 @@ public class DatHang {
     int cartnum, selectednum, testcartnum, testamount, checkcartnum, price, amount, cash, totalcash;
     String testname, testprice, tfprice, tfcash, tfamount;
     String checkname, checkprice;
+    String error;
 
     @Test
     public static void check() throws InterruptedException, Exception {
@@ -31,6 +32,7 @@ public class DatHang {
     @Test
     public void checkDatHang() throws InterruptedException, Exception {
         driver.navigate().to("http://localhost/web2general/single-product.php?maSanPham=64");
+        CheckChonHang_Fail();
         CheckChonHang();
         CheckChonHang_2();
         CheckChonHang_3();
@@ -38,6 +40,27 @@ public class DatHang {
         driver.quit();
     }
 
+    public void CheckChonHang_Fail() throws InterruptedException, Exception {
+        //chọn số lượng đặt =0
+        driver.navigate().to("http://localhost/web2general/single-product.php?maSanPham=64");
+        driver.findElement(By.xpath("/html/body/section[2]/div/div[2]/div[1]/div[1]/div[2]/div/div[7]/form/div/div/div/div[1]")).click();//Bấm -1 xuống 0
+        driver.findElement(By.xpath("/html/body/section[2]/div/div[2]/div[1]/div[1]/div[2]/div/div[7]/form/input")).click();//Bấm button đặt hàng
+        error= driver.switchTo().alert().getText();
+        Assert.assertEquals(error, "Số lượng không hợp lệ!");
+        driver.switchTo().alert().accept();
+        Thread.sleep(1000);
+        //Chọn số lượng đặt > số lượng có sẵn (đang có 7)
+        for(int i=0;i<7;i++){
+        driver.findElement(By.xpath("/html/body/section[2]/div/div[2]/div[1]/div[1]/div[2]/div/div[7]/form/div/div/div/div[2]")).click();//Bấm +1 lên 8
+        }
+        driver.findElement(By.xpath("/html/body/section[2]/div/div[2]/div[1]/div[1]/div[2]/div/div[7]/form/input")).click();//Bấm button đặt hàng
+        error= driver.switchTo().alert().getText();
+        Assert.assertEquals(error, "Số lượng không hợp lệ!");
+        driver.switchTo().alert().accept();
+        Thread.sleep(1000);
+        driver.navigate().to("http://localhost/web2general/");
+    }
+    
     public void CheckChonHang() throws InterruptedException, Exception {
         cartnum = Integer.parseInt(driver.findElement(By.xpath("/html/body/header/div/div/div[1]/div/div/a/span")).getText());//lấy số trc khi bấm chọn,đang là 0
         driver.navigate().to("http://localhost/web2general/single-product.php?maSanPham=64");
