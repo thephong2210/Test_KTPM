@@ -31,7 +31,7 @@ import static testproject.DangKy.driver;
 public class DangNhapAdmin {
 
     String filepath = "exel\\TestcaseSignUp.xlsx";
-
+    String error;
     public DangNhapAdmin() {
     }
     ReadCellExample rc = new ReadCellExample();
@@ -52,7 +52,7 @@ public class DangNhapAdmin {
         driver.manage().window().fullscreen();
     }
 
-    @Test
+//    @Test
 
     public void check_LoginForm_fail() throws InterruptedException, Exception {
         // Bỏ trống
@@ -70,6 +70,18 @@ public class DangNhapAdmin {
         Thread.sleep(2000);
         driver.findElement(By.xpath("/html/body/div/div/div/div/div[2]/form/fieldset/input")).click();
 
+        setUpMethod();
+
+    }
+    @Test
+    public void check_LoginForm_block() throws InterruptedException, Exception {
+        // nhập tài khoản bị khóa
+        driver.findElement(By.xpath("/html/body/div/div/div/div/div[2]/form/fieldset/div[1]/input")).sendKeys("giangphong");
+        driver.findElement(By.xpath("/html/body/div/div/div/div/div[2]/form/fieldset/div[2]/input")).sendKeys("123456a");
+        Thread.sleep(500);
+        driver.findElement(By.xpath("/html/body/div/div/div/div/div[2]/form/fieldset/input")).click();
+        error= driver.findElement(By.xpath("/html/body/div[1]/div/div/div/span/div")).getText();
+        Assert.assertEquals(error, "Tài khoản đã bị khóa!");
         setUpMethod();
 
     }
