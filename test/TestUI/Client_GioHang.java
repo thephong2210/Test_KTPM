@@ -12,7 +12,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.support.Color;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import static testproject.DangKy.driver;
+import static Client.DangKy.driver;
 
 /**
  *

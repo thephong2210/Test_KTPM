@@ -11,7 +11,7 @@ import org.junit.BeforeClass;
 import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import static testproject.DangKy.driver;
+import static Client.DangKy.driver;
 
 /**
  *
