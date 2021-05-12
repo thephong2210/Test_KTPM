@@ -25,25 +25,25 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import static testproject.DangKy.driver;
+import static Client.DangKy.driver;
 import static ADMIN.DangNhapAdmin.*;
 import java.util.Iterator;
 import java.util.Set;
-import static testproject.DangKy.driver;
+import static Client.DangKy.driver;
 import testproject.ReadCellExample;
 
 public class QLND_KhachHang {
     String filepath = "exel\\Customer.xlsx";
     ReadCellExample rc = new ReadCellExample();
-    String addcustomer = "http://localhost:8080/web2general/admin/pages/customeradd.php";
+    String addcustomer = "http://localhost:/web2general/admin/pages/customeradd.php";
     String error;
     WebElement name, mail, accountname, pass, confirmpass, buttonadd;
-    String customer = "http://localhost:8080/web2general/admin/pages/customerlist.php";
+    String customer = "http://localhost:/web2general/admin/pages/customerlist.php";
 
     @Test
     public static void check() throws InterruptedException, Exception {
 
-        LoginAdminAndToPage("http://localhost:8080/web2general/admin/pages/customerlist.php");
+        LoginAdminAndToPage("http://localhost:/web2general/admin/pages/customerlist.php");
     }
 
     @Test
@@ -105,7 +105,6 @@ public class QLND_KhachHang {
         setUpMethod();
         
     }
-
     public void AddCustomer_Fail() throws InterruptedException, Exception {
         name = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[1]/td[2]/input"));
         mail = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[2]/td[2]/input"));
@@ -139,15 +138,15 @@ public class QLND_KhachHang {
         buttonadd = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/input"));
 
         //Họ tên
-        name.sendKeys(rc.ReadCellData(1, 0, filepath));
+        name.sendKeys(rc.ReadCellData(5, 0, filepath));
         //Email
-        mail.sendKeys(rc.ReadCellData(1, 1, filepath));
+        mail.sendKeys(rc.ReadCellData(5, 1, filepath));
         //Tên đăng nhập
-        accountname.sendKeys(rc.ReadCellData(1, 2, filepath));
+        accountname.sendKeys(rc.ReadCellData(5, 2, filepath));
         //Mật khẩu
-        pass.sendKeys(rc.ReadCellData(1, 3, filepath));
+        pass.sendKeys(rc.ReadCellData(5, 3, filepath));
         //Nhập lại mật khẩu
-        confirmpass.sendKeys(rc.ReadCellData(1, 4, filepath));
+        confirmpass.sendKeys(rc.ReadCellData(5, 4, filepath));
         //Click button
         buttonadd.click();
         error = driver.switchTo().alert().getText();
@@ -241,15 +240,12 @@ public class QLND_KhachHang {
         
         mailedit.clear();
         mailedit.sendKeys(rc.ReadCellData(1, 1, filepath));//Nhập lại mail đúng
-        WebElement accountnameedit = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[3]/td[2]/input"));//Tên đăng nhập
-        accountnameedit.clear();
-        accountnameedit.sendKeys(rc.ReadCellData(2, 2, filepath));
         WebElement passedit = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[4]/td[2]/input"));//Mật khẩu
         passedit.clear();
-        passedit.sendKeys(rc.ReadCellData(1, 3, filepath));
+        passedit.sendKeys(rc.ReadCellData(5, 3, filepath));
         WebElement confirmpassedit = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[5]/td[2]/input"));//Nhập lại mật khẩu
         confirmpassedit.clear();
-        confirmpassedit.sendKeys(rc.ReadCellData(1, 4, filepath));
+        confirmpassedit.sendKeys(rc.ReadCellData(5, 4, filepath));
         buttonedit.click();
         error = driver.switchTo().alert().getText();
         Assert.assertEquals(error, "Mật khẩu không giống nhau! Mời nhập lại!");

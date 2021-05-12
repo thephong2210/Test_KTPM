@@ -25,11 +25,11 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import static testproject.DangKy.driver;
+import static Client.DangKy.driver;
 import static ADMIN.DangNhapAdmin.*;
 
 public class QLHD_DonHang {
-    //@Test
+    @Test
     public void DonHang() throws InterruptedException, Exception{
         LoginAdminAndToPage("http://localhost/web2general/admin/pages/orders.php");
         Thread.sleep(3000);
@@ -158,20 +158,19 @@ public class QLHD_DonHang {
         //click xem chi tiết --> Hiện web site chi tiết
         driver.findElement(By.xpath("//*[@id=\"btnShow\"]")).click();
         //Thread.sleep(2000);
-        driver.manage().window().fullscreen();
+        driver.manage().window().fullscreen(); // nó mở full màn hình là đã đến bước này! 
     }
 
-    @Test
+    //@Test
     public static void click_thanhtoan() throws InterruptedException, Exception {
 
         LoginAdminAndToPage("http://localhost/web2general/admin/pages/orders.php?statusid=9");
-        driver.findElement(By.xpath("//*[@id=\"dataTables-example\"]/tbody/tr[9]/td[6]/a[2]/button")).click();
+        driver.findElement(By.xpath("//*[@id=\"dataTables-example\"]/tbody/tr[3]/td[6]/a[2]/button")).click();
 
     }
     public void setUpMethod() throws Exception {
         Thread.sleep(3000);
         driver.navigate().refresh();
-//        driver.manage().window().fullscreen();
         //clear input TimKiem
         driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div/div/div[2]/form[1]/input[1]")).clear();
     }

@@ -25,7 +25,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import static testproject.DangKy.driver;
+import static Client.DangKy.driver;
 import static ADMIN.DangNhapAdmin.*;
 import testproject.ReadCellExample;
 
@@ -53,22 +53,20 @@ public class QLSP_DanhSachSP {
         //tìm kiếm khi nhập vào ký tụ "Rotylllllllllllllllllllll" không có trong csdl
         driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/input[1]")).sendKeys("Royallllllllll");
         driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/input[2]")).click();
+        String errrr = driver.switchTo().alert().getText() ;
+        Assert.assertEquals(errrr,"Không tìm thấy dữ liệu!" );
+        Thread.sleep(2000); driver.switchTo().alert().accept();
         setUpMethod();
-        
-        WebElement lblerror = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/div/div[1]"));
-        Assert.assertEquals(lblerror.getText(), "Không tìm thấy dữ liệu!");
         Thread.sleep(2000);
+        
+//        WebElement lblerror = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/div/div[1]"));
+//        Assert.assertEquals(lblerror.getText(), "Không tìm thấy dữ liệu!");
+//        Thread.sleep(2000);
         
         //chọn hiện tất cả
         driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/a[1]/input")).click();
         setUpMethod();
         
-    }
-    //@Test
-    public static void check() throws InterruptedException, Exception {
-
-        LoginAdminAndToPage("http://localhost/web2general/admin/pages/product.php");
-
     }
 
 }

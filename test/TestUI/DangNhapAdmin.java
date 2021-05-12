@@ -24,7 +24,7 @@ import org.testng.annotations.BeforeClass;
 
 import org.testng.annotations.Test;
 import testproject.ReadCellExample;
-import static testproject.DangKy.driver;
+import static Client.DangKy.driver;
 
 public class DangNhapAdmin {
 

@@ -7,7 +7,7 @@ package ADMIN;
 
 import static ADMIN.DangNhapManager.LoginManagerAndToPage;
 import org.testng.annotations.Test;
-import static testproject.DangKy.driver;
+import static Client.DangKy.driver;
 import org.openqa.selenium.By;
 import org.testng.Assert;
 //import org.junit.Test;

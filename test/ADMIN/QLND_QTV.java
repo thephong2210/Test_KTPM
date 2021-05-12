@@ -25,8 +25,8 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import static testproject.DangKy.driver;
 import static ADMIN.DangNhapAdmin.*;
+import static Client.DangKy.driver;
 import java.util.Iterator;
 import java.util.Set;
 import testproject.ReadCellExample;
@@ -37,22 +37,21 @@ public class QLND_QTV {
     }
 
     String filepath = "exel\\Administrator.xlsx";
-    String adduser = "http://localhost:8080/web2general/admin/pages/useradd.php";
-    String admin = "http://localhost:8080/web2general/admin/pages/userlist.php";
-    String edituser = "http://localhost:8080/web2general/admin/pages/useredit.php?username=giangthephong";
+    String adduser = "http://localhost/web2general/admin/pages/useradd.php";
+    String admin = "http://localhost/web2general/admin/pages/userlist.php";
+    String edituser = "http://localhost/web2general/admin/pages/useredit.php?username=giangthephong";
     String error;
     ReadCellExample rc = new ReadCellExample();
     WebElement name, mail, accountname, password, confirmpass, accounttype, buttonadd;
 
     @Test
     public static void check() throws InterruptedException, Exception {
-        LoginAdminAndToPage("http://localhost:8080/web2general/admin/pages/userlist.php");
+        LoginAdminAndToPage("http://localhost/web2general/admin/pages/userlist.php");
     }
 
     @Test
     public void check_AddUser() throws InterruptedException, Exception {
         driver.navigate().to(adduser);//Chuyển đến trang thêm admin
-
         AddUser_Empty();
         AddUser_Fail();
         AddUser();
@@ -62,7 +61,7 @@ public class QLND_QTV {
         name = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[1]/td[2]/input"));
         mail = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[2]/td[2]/input"));
         accountname = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[3]/td[2]/input"));
-        password = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[4]/td[2]/input"));
+        password = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div   /div[2]/div[2]/form/table/tbody/tr[4]/td[2]/input"));
         confirmpass = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[5]/td[2]/input"));
         accounttype = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[6]/td[2]/select"));
         buttonadd = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/input"));
@@ -170,7 +169,7 @@ public class QLND_QTV {
     }
 
     public void AddUser() throws Exception {
-
+        
         name = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[1]/td[2]/input"));
         mail = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[2]/td[2]/input"));
         accountname = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[3]/td[2]/input"));
@@ -205,7 +204,6 @@ public class QLND_QTV {
         EditUser_Empty();
         EditUser_fail();
         EditUser();
-
         //switch tothe parent window
         //driver.switchTo().window(parent);
     }
@@ -223,22 +221,43 @@ public class QLND_QTV {
             if (!parent.equals(child_window)) {
                 driver.switchTo().window(child_window);
                     WebElement nameedit = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[1]/td[2]/input"));
-                WebElement mailedit = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[2]/td[2]/input"));
+                
 //                WebElement accountedit = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[3]/td[2]/input"));
-                WebElement newpass = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[4]/td[2]/input"));
-                WebElement newpassconfirm = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[5]/td[2]/input"));
-                WebElement accounttypeedit = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[6]/td[2]/select"));
-                WebElement buttonedit = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/input"));
+                
+                
+//                WebElement accounttypeedit = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[6]/td[2]/select"));
+                
                 nameedit.clear();
-                mailedit.clear();
-                accounttypeedit.clear();
-                newpass.clear();
-                newpassconfirm.clear();
-                accounttypeedit.clear();
-                buttonedit.click();
-                error = nameedit.getAttribute("validationMessage");
+                driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/input")).click();
                 error = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/div")).getText();
                 Assert.assertEquals(error, "Không được để trống!");
+                
+                WebElement mailedit = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[2]/td[2]/input"));
+                mailedit.clear();
+                driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/input")).click();
+                error = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/div")).getText();
+                Assert.assertEquals(error, "Không được để trống!");
+                
+                WebElement newpass = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[4]/td[2]/input"));
+                newpass.clear();
+                driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/input")).click();
+                error = driver.switchTo().alert().getText();
+                Assert.assertEquals(error, "Mật khẩu không giống nhau! Mời nhập lại!");
+                driver.switchTo().alert().accept();
+                
+                WebElement newpassconfirm = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[5]/td[2]/input"));
+                newpassconfirm.clear();
+                driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/input")).click();
+                error = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/div")).getText();
+                Assert.assertEquals(error, "Không được để trống!");
+                
+                newpassconfirm = driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/table/tbody/tr[5]/td[2]/input"));
+                newpassconfirm.clear();
+                driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/input")).click();
+                error = driver.switchTo().alert().getText();
+                Assert.assertEquals(error, "Mật khẩu không giống nhau! Mời nhập lại!");
+                driver.switchTo().alert().accept();
+//                
                 
                 
             }
@@ -334,7 +353,6 @@ public class QLND_QTV {
         accounttypeedit.sendKeys("manager");
         driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/input")).click();
         Thread.sleep(2000);
-        driver.close();
     }
 
     public void BlockUser() throws Exception {

@@ -26,7 +26,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import testproject.ReadCellExample;
-import static testproject.DangKy.driver;
+import static Client.DangKy.driver;
 
 public class DangNhapManager {
 
@@ -74,7 +74,7 @@ public class DangNhapManager {
 //
 //    }
 
-//    @Test
+    @Test
     public static void check_LoginForm_success() throws InterruptedException, Exception {
         driver.findElement(By.xpath("/html/body/div/div/div/div/div[2]/form/fieldset/div[1]/input")).sendKeys("manager1");
         driver.findElement(By.xpath("/html/body/div/div/div/div/div[2]/form/fieldset/div[2]/input")).sendKeys("123");

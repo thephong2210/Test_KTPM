@@ -25,7 +25,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import static testproject.DangKy.driver;
+import static Client.DangKy.driver;
 import static ADMIN.DangNhapAdmin.*;
 
 
@@ -129,17 +129,12 @@ public class QLHD_HoaDon {
         Thread.sleep(3000);
         
         //click xem chi tiết --> Hiện web site chi tiết
-        driver.findElement(By.xpath("//*[@id=\"btnShow\"]")).click();
-        //Thread.sleep(2000);
+        driver.findElement(By.xpath("/html/body/div[1]/div/div/div[2]/div/div/div[2]/div/table/tbody/tr[1]/td[5]/a/button")).click();
+        Thread.sleep(2000);
         driver.manage().window().fullscreen();
     }
 
-    //@Test
-    public static void check() throws InterruptedException, Exception {
 
-        LoginAdminAndToPage("http://localhost/web2general/admin/pages/hoadonlist.php");
-
-    }
     public void setUpMethod() throws Exception {
         Thread.sleep(3000);
         driver.navigate().refresh();

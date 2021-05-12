@@ -26,16 +26,13 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import testproject.ReadCellExample;
-import static testproject.DangKy.driver;
+import static Client.DangKy.driver;
 
 public class DangNhapAdmin {
 
-    String filepath = "exel\\TestcaseSignUp.xlsx";
     String error;
     public DangNhapAdmin() {
     }
-    ReadCellExample rc = new ReadCellExample();
-    TKDT_SP thongKeAdmin = new TKDT_SP();
 
     @BeforeClass
     //Chạy trước method test đầu tiên trong class hiện tại
@@ -52,7 +49,7 @@ public class DangNhapAdmin {
         driver.manage().window().fullscreen();
     }
 
-//    @Test
+    @Test
 
     public void check_LoginForm_fail() throws InterruptedException, Exception {
         // Bỏ trống
@@ -86,7 +83,7 @@ public class DangNhapAdmin {
 
     }
 
-//    @Test
+    @Test
     public static void check_LoginForm_success() throws InterruptedException, Exception {
         driver.findElement(By.xpath("/html/body/div/div/div/div/div[2]/form/fieldset/div[1]/input")).sendKeys("admin");
         driver.findElement(By.xpath("/html/body/div/div/div/div/div[2]/form/fieldset/div[2]/input")).sendKeys("admin");

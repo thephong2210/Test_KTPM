@@ -3,22 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< Updated upstream
-            <file>file:/D:/Study/HK2_Nam3/KiemThuPhanMem/Test_KTPM/test/TestUI/Admin_TrangChu.java</file>
-=======
-<<<<<<< HEAD
-            <file>file:/D:/Projects/NetBeansProjects/KTPM/test/testproject/GioHang.java</file>
-            <file>file:/D:/Projects/NetBeansProjects/KTPM/test/testproject/CssColorValue.java</file>
-            <file>file:/D:/Projects/NetBeansProjects/KTPM/test/testproject/DangKy.java</file>
-            <file>file:/D:/Projects/NetBeansProjects/KTPM/test/testproject/DangNhap.java</file>
-            <file>file:/D:/Projects/NetBeansProjects/KTPM/test/testproject/TestRunner.java</file>
-            <file>file:/D:/Projects/NetBeansProjects/KTPM/test/testproject/ThongTinCaNhan.java</file>
-            <file>file:/D:/Projects/NetBeansProjects/KTPM/src/testproject/ReadCellExample.java</file>
-            <file>file:/D:/Projects/NetBeansProjects/KTPM/test/testproject/TrangChu.java</file>
-=======
-            <file>file:/D:/Study/HK2_Nam3/KiemThuPhanMem/Test_KTPM/test/TestUI/Admin_TrangChu.java</file>
->>>>>>> 73e9dbcfb959f55a12737863644677407197b1bf
->>>>>>> Stashed changes
+            <file>file:/D:/Projects/NetBeansProjects/KTPM/test/Client/DangKy.java</file>
+            <file>file:/D:/Projects/NetBeansProjects/KTPM/test/ADMIN/QLSP_DanhMucSP.java</file>
+            <file>file:/D:/Projects/NetBeansProjects/KTPM/test/Client/GioHang.java</file>
+            <file>file:/D:/Projects/NetBeansProjects/KTPM/test/Client/CssColorValue.java</file>
+            <file>file:/D:/Projects/NetBeansProjects/KTPM/test/ADMIN/QLSP_DanhSachSP.java</file>
+            <file>file:/D:/Projects/NetBeansProjects/KTPM/test/Client/DangNhap.java</file>
+            <file>file:/D:/Projects/NetBeansProjects/KTPM/test/Client/TestRunner.java</file>
+            <file>file:/D:/Projects/NetBeansProjects/KTPM/test/ADMIN/QLSP_ThemSP.java</file>
         </group>
     </open-files>
 </project-private>

@@ -14,7 +14,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.Color;
-import static testproject.DangKy.driver;
+import static Client.DangKy.driver;
 
 /**
  *

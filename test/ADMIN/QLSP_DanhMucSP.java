@@ -25,7 +25,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import static testproject.DangKy.driver;
+import static Client.DangKy.driver;
 import static ADMIN.DangNhapAdmin.*;
 import testproject.ReadCellExample;
 
@@ -34,11 +34,11 @@ public class QLSP_DanhMucSP {
     String filepath = "exel\\TestcaseSignUp.xlsx";
     public QLSP_DanhMucSP(){
     }
-    ReadCellExample rc = new ReadCellExample();
     
     @Test
     public void check_add() throws InterruptedException, Exception  { 
         LoginAdminAndToPage("http://localhost/web2general/admin/pages/category.php");
+        
         driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/input[1]")).sendKeys("");
         Thread.sleep(2000);
         driver.findElement(By.xpath("//*[@id=\"addbtn\"]")).click();
@@ -56,6 +56,7 @@ public class QLSP_DanhMucSP {
 
     }
     @Test
+    //trường hợp chỉnh sửa, sửa nhưng để trống sẽ bị lỗi và có thông báo
     public void check_edit() throws InterruptedException, Exception{ 
         driver.navigate().to("http://localhost/web2general/admin/pages/categoryedit.php?catid=15");
         driver.findElement(By.xpath("//*[@id=\"page-wrapper\"]/div/div[2]/div[2]/form/input[1]")).clear();
