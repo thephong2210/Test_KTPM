@@ -48,7 +48,6 @@ public class Admin_HeaderMenu {
         HamDungChung.Test_FontSize("//*[@id=\"wrapper\"]/nav/ul[2]/li[1]/a", "14px");
         HamDungChung.Test_Color("//*[@id=\"wrapper\"]/nav/ul[2]/li[1]/a", "#999999");
         
-        
         //- dropdown ""<i class=""fa fa-user fa-fw""></i> Admin"", size 14px, color #999999
         HamDungChung.Test_Icon("//*[@id=\"wrapper\"]/nav/ul[2]/li[2]/a/i", "fa fa-user fa-fw");
         HamDungChung.Test_TextSizeColor("//*[@id=\"wrapper\"]/nav/ul[2]/li[2]/a", "Admin", "14px", "#999999");
@@ -95,7 +94,13 @@ public class Admin_HeaderMenu {
        
         //- ""<i class=""fa fa-product-hunt""></i> Quản lý sản phẩm""
         driver.findElement(By.xpath("//*[@id=\"side-menu\"]/li[4]/a")).click();
-        driver.findElement(By.xpath("//*[@id=\"side-menu\"]/li[4]/ul/li[2]/a")).click();
+        String currentURL = driver.getCurrentUrl();
+        
+        if (!currentURL.equals("http://localhost/web2general/admin/pages/product.php")){
+            if (!currentURL.equals("http://localhost/web2general/admin/pages/productadd.php")){
+                driver.findElement(By.xpath("//*[@id=\"side-menu\"]/li[4]/ul/li[2]/a")).click();
+            }
+        }
         
         HamDungChung.Test_Icon("//*[@id=\"side-menu\"]/li[4]/a/i", "fa fa-product-hunt");
         HamDungChung.Test_Text("//*[@id=\"side-menu\"]/li[4]/a", "Quản lý sản phẩm");
