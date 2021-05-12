@@ -5,6 +5,7 @@
  */
 package TestUI;
 
+import java.util.concurrent.TimeUnit;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Assert;
@@ -13,6 +14,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.openqa.selenium.By;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.Color;
 import static testproject.DangKy.driver;
 
@@ -45,6 +47,7 @@ public class HamDungChung {
         String colorTestHex = Color.fromString(colorTest).asHex();
         Assert.assertEquals(colorHex, colorTestHex);
     }
+   
     
     //Hàm kiểm thử font-size
     public static void Test_FontSize(String xPath, String Size){
@@ -81,6 +84,14 @@ public class HamDungChung {
     public static void Test_CSSValue(String xPath, String cssValue, String cssString){
         String cssGet = driver.findElement(By.xpath(xPath)).getCssValue(cssValue);
         Assert.assertEquals(cssString, cssGet);
+    }
+    
+    public static void OpenPage(String urlString){
+        System.out.println("Start");
+        System.setProperty("webdriver.chrome.driver", "test\\lib\\chromedriver.exe");
+        driver = new ChromeDriver();
+        driver.manage().timeouts().implicitlyWait(20000, TimeUnit.MILLISECONDS);
+        driver.get(urlString);
     }
     
     

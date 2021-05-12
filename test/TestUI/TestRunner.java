@@ -40,8 +40,19 @@ public class TestRunner {
         TestClass(Admin_ThongKeTheoSanPham.class);
         
         //Client
-        
-        
+//        TestClass(Client_ChiTietSanPham.class);
+//        TestClass(Client_DangKy.class);
+//        TestClass(Client_DangNhap.class);
+//        TestClass(Client_GioHang.class);
+//        TestClass(Client_KetQuaTimKiem.class);
+//        TestClass(Client_KiemTraDiaChi.class);
+//        TestClass(Client_LichSuDonHang.class);
+//        TestClass(Client_LoaiSanPham.class);
+//        TestClass(Client_TaiKhoanCuaToi.class);
+//        TestClass(Client_ThanhToan.class);
+//        TestClass(Client_ThongTinCaNhan.class);
+//        TestClass(Client_ThongTinVanChuyen.class);
+//        TestClass(Client_TrangChu.class);
         
     }
     
